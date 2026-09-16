@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>YUVA FIT &amp; PHYSIQUE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#050505;
+    --charcoal:#0a0a0a;
+    --charcoal-2:#141414;
+    --bone:#f5f2ec;
+    --bone-dim:#a5a5a5;
+    --red:#e50920;
+    --red-deep:#5c0f14;
+    --red-glow:rgba(229,9,32,0.25);
+    --line:rgba(245,242,236,0.1);
+    --ease:cubic-bezier(.16,.84,.24,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:0.01em; line-height:0.9;}
+  .script{font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; letter-spacing:0.01em;}
+  a{color:inherit; text-decoration:none;}
+  a:focus-visible, button:focus-visible, [role="button"]:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--red); outline-offset:3px; border-radius:6px;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--red); color:var(--bone);}
+
+  /* ===== NAV ===== */
+  .nav-wrap{
+    position:fixed; top:max(22px,env(safe-area-inset-top)); left:0; right:0; z-index:200;
+    display:flex; justify-content:center;
+    padding:0 20px;
+    pointer-events:none;
+  }
+  .nav{
+    pointer-events:auto;
+    display:flex; align-items:center; gap:2px;
+    background:rgba(5,5,5,0.86);
+    backdrop-filter:blur(20px) saturate(150%);
+    -webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid rgba(229,9,32,0.28);
+    border-radius:999px;
+    padding:8px 8px 8px 22px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(229,9,32,0.08);
+    width:max-content;
+    max-width:calc(100vw - 40px);
+  }
+  .nav-logo{
+    font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.08em;
+    margin-right:28px; white-space:nowrap; color:var(--bone);
+  }
+  .nav-logo span{color:var(--red);}
+  .nav-links{display:flex; gap:6px; margin-right:6px;}
+  .nav-links a{
+    font-size:13px; padding:9px 15px; border-radius:999px; color:var(--bone);
+    transition:all .25s var(--ease); white-space:nowrap;
+    letter-spacing:0.02em;
+  }
+  .nav-links a:hover{color:var(--bone); background:rgba(229,9,32,0.2);}
+  .nav-cta{
+    font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px;
+    background:var(--red); color:var(--bone);
+    transition:all .25s var(--ease); white-space:nowrap;
+    box-shadow:0 0 20px rgba(229,9,32,0.2);
+  }
+  .nav-cta:hover{ transform:scale(1.04); box-shadow:0 0 32px rgba(229,9,32,0.5);}
+  .nav-franchise{
+    font-size:13px; padding:9px 15px; border-radius:999px; color:var(--bone);
+    transition:all .25s var(--ease); white-space:nowrap;
+    letter-spacing:0.02em; background:transparent; border:none; font-weight:400;
+  }
+  .nav-franchise:hover{color:var(--bone); background:rgba(229,9,32,0.2);}
+  .nav-burger{display:none; padding:10px 14px; cursor:pointer;}
+  .nav-burger span{display:block; width:20px; height:2px; background:var(--bone); margin:4px 0; transition:.3s;}
+
+  @media (max-width:1100px) and (min-width:769px){
+    .nav{padding-left:12px; padding-right:6px;}
+    .nav-logo{margin-right:12px;}
+    .nav-links{gap:2px; margin-right:2px;}
+    .nav-links a, .nav-franchise{padding-left:9px; padding-right:9px;}
+    .nav-cta{padding-left:14px; padding-right:14px;}
+  }
+
+  .mobile-menu{
+    position:fixed; inset:0; background:rgba(5,5,5,0.98); z-index:199;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .35s var(--ease), visibility 0s linear .35s;
+  }
+  .mobile-menu.open{opacity:1; visibility:visible; pointer-events:auto; transition:opacity .35s var(--ease), visibility 0s;}
+  .mobile-menu a{font-family:'Anton',sans-serif; font-size:28px; letter-spacing:0.04em;}
+  .mobile-menu .nav-cta{font-family:'Inter',sans-serif; margin-top:10px;}
+  .nav-wrap{transition:transform .4s var(--ease), opacity .4s var(--ease); will-change:transform,opacity;}
+  .nav-wrap.nav-hidden{transform:translateY(-160%); opacity:0;}
+  .nav-wrap.nav-hidden .nav{pointer-events:none;}
+
+  /* ===== HERO ===== */
+  .page{
+    position:relative;
+    min-height:100vh;
+    min-height:100dvh;
+    overflow:hidden;
+  }
+
+  .hero{
+    position:relative;
+    z-index:2;
+    min-height:230vh;
+    height:230vh;
+    padding:0;
+    overflow:visible;
+    background:var(--black);
+  }
+  .hero-stage{
+    position:sticky;
+    top:0;
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+  }
+  .hero-frame{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    clip-path:inset(21% 29% 21% 29% round 24px);
+    will-change:clip-path;
+  }
+  .hero-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transform:scale(1.35);
+    will-change:transform;
+  }
+  .hero-image-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,rgba(5,5,5,.78),rgba(5,5,5,.24) 58%,rgba(5,5,5,.42)),linear-gradient(0deg,rgba(5,5,5,.66),transparent 48%);
+    pointer-events:none;
+  }
+  .hero-content{
+    position:relative;
+    z-index:3;
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:40px;
+    height:100%;
+    max-height:none;
+    padding:80px 6vw 40px;
+    opacity:0;
+    transform:translate3d(-24px,14px,0);
+    will-change:opacity,transform;
+  }
+  .hero-copy{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .hero-eyebrow{
+    color:var(--red);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    opacity:0.9;
+  }
+  .hero-headline{
+    font-size:clamp(44px,7.5vw,96px);
+    line-height:0.9;
+    letter-spacing:-0.01em;
+    width:100%;
+    max-width:100%;
+    overflow:visible;
+  }
+  .hero-headline .accent{color:var(--red);}
+  .hero-headline .line{
+    display:block;
+    overflow:visible;
+  }
+  .hero-headline .line span{
+    display:inline-block;
+  }
+
+  .hero-sub{
+    max-width:440px;
+    margin-top:22px;
+    color:var(--bone-dim);
+    font-size:16px;
+    line-height:1.7;
+    opacity:1;
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    margin-top:34px;
+    flex-wrap:wrap;
+    opacity:1;
+  }
+  .btn-primary, .btn-secondary{
+    font-size:14px;
+    font-weight:600;
+    padding:16px 32px;
+    border-radius:4px;
+    transition:all .35s var(--ease);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    letter-spacing:0.03em;
+  }
+  .btn-primary{
+    background:var(--red);
+    color:var(--bone);
+    box-shadow:0 0 30px rgba(229,9,32,0.2);
+  }
+  .btn-primary:hover{
+    background:#ff0a24;
+    transform:translateY(-2px);
+    box-shadow:0 10px 40px rgba(229,9,32,0.5);
+  }
+  .btn-secondary{
+    border:1px solid rgba(245,242,236,0.2);
+    color:var(--bone);
+  }
+  .btn-secondary:hover{
+    border-color:var(--red);
+    transform:translateY(-2px);
+    box-shadow:0 0 30px rgba(229,9,32,0.08);
+  }
+
+  .hero-strip{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:4;
+    padding:20px 6vw 28px;
+    border-top:1px solid rgba(245,242,236,0.06);
+    background:linear-gradient(to top, rgba(5,5,5,0.6), transparent);
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    opacity:1;
+  }
+  .strip-item .k{font-size:10px; letter-spacing:0.14em; color:var(--bone-dim); text-transform:uppercase;}
+  .strip-item .v{font-size:14px; font-weight:500; color:var(--bone); margin-top:2px;}
+  .hero-scroll-cue{position:absolute; right:6vw; bottom:30px; z-index:5; color:var(--bone-dim); font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:0; will-change:opacity,transform;}
+
+
+  /* ===== SECTIONS ===== */
+  section{position:relative; z-index:1; padding:120px 6vw;}
+  .section-tag{color:var(--red); font-size:14px; font-weight:600; margin-bottom:18px;}
+  .section-title{
+    font-size:clamp(36px,5.6vw,72px);
+    max-width:780px;
+    line-height:0.95;
+    overflow:visible;
+    width:100%;
+  }
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .transform-sec{background:var(--charcoal); padding:100px 6vw;}
+  .transform-title{
+    font-size:clamp(36px,6vw,80px);
+    max-width:800px;
+    line-height:0.92;
+    overflow:visible;
+    width:100%;
+  }
+  .transform-title .line{display:block; overflow:visible;}
+  .transform-title .line span{display:inline-block; transform:translateY(110%); transition:transform 1s var(--ease);}
+  .transform-title.in .line span{transform:translateY(0);}
+  .transform-title .line:nth-child(2) span{transition-delay:.12s;}
+  .transform-sub{max-width:520px; color:var(--bone-dim); margin-top:24px; font-size:17px; line-height:1.7;}
+
+  /* ===== DRIFTWALL ===== */
+  .driftwall-container {
+    margin-top: 60px;
+    height: 620px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    --dw-tile-w: 200px;
+    --dw-tile-h: 132px;
+    --dw-gap: 18px;
+    --dw-radius: 14px;
+    --dw-lift: 64px;
+    --dw-dim: 0.55;
+    --dw-gray: 0;
+    --dw-overlay: #060010;
+    --dw-edge: 40%;
+    -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%), linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%), linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
+    mask-composite: intersect;
+  }
+  .driftwall-plane {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: row;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transform-origin: 50% 50%;
+    will-change: transform;
+    transform: translate(-50%, -50%) scale(1.18) rotateX(16deg) rotateY(-14deg) translateZ(-120px);
+  }
+  .driftwall-col {
+    position: relative;
+    width: calc(var(--dw-tile-w) + var(--dw-gap));
+    transform-style: preserve-3d;
+  }
+  .driftwall-track {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+  .driftwall-tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: calc(var(--dw-tile-h) + var(--dw-gap));
+    flex: 0 0 auto;
+    outline: none;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  .driftwall-tile-inner {
+    position: absolute;
+    inset: calc(var(--dw-gap) / 2);
+    display: block;
+    border-radius: var(--dw-radius);
+    overflow: hidden;
+    background: #0b0b12;
+    opacity: var(--dw-dim);
+    transform: translateZ(0);
+    pointer-events: none;
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .driftwall-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(var(--dw-gray)) saturate(0.92);
+    transition: filter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .driftwall-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--dw-overlay);
+    opacity: 0.42;
+    pointer-events: none;
+    transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .driftwall-tile.is-active .driftwall-tile-inner,
+  .driftwall-tile:focus-visible .driftwall-tile-inner {
+    opacity: 1;
+    transform: translateZ(var(--dw-lift));
+    box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.7);
+  }
+  .driftwall-tile.is-active img,
+  .driftwall-tile:focus-visible img {
+    filter: grayscale(0) saturate(1.05);
+  }
+  .driftwall-tile.is-active .driftwall-tile-overlay,
+  .driftwall-tile:focus-visible .driftwall-tile-overlay {
+    opacity: 0;
+  }
+  .driftwall-tile:focus-visible .driftwall-tile-inner {
+    box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(255, 255, 255, 0.9);
+  }
+  .driftwall-tile-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    z-index: 2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .driftwall-tile.is-active .driftwall-tile-label,
+  .driftwall-tile:hover .driftwall-tile-label {
+    opacity: 1;
+  }
+
+  /* ===== SANDY / ACCORDIONGALLERY ===== */
+  .sandy-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s var(--ease);
+    padding: 24px;
+  }
+  .sandy-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sandy-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    max-height: 90vh;
+    background: linear-gradient(135deg, #131313 0%, #0a0a0a 100%);
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transform: scale(0.9) translateY(40px) rotateX(4deg);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.6);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .sandy-overlay.open .sandy-wrapper {
+    transform: scale(1) translateY(0) rotateX(0deg);
+  }
+  .sandy-gallery {
+    --ag-accent: #ffffff;
+    --ag-overlay: #060010;
+    --ag-text: #ffffff;
+    --ag-gap: 10px;
+    --ag-radius: 16px;
+    --ag-media-size: 320px;
+    display: flex;
+    flex-direction: row;
+    gap: var(--ag-gap);
+    width: 100%;
+    max-width: 100%;
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    min-height: 400px;
+    padding: 14px 0 14px 14px;
+  }
+  .sandy-gallery.single-image{padding:14px;}
+  .sandy-gallery.single-image .sandy-panel-media{
+    width:100%;
+    transform:translate(-50%, -50%);
+  }
+  .sandy-gallery--vertical {
+    flex-direction: column;
+  }
+  .sandy-panel {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: var(--ag-radius);
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    outline: none;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    background: #0a0713;
+    box-shadow: 0 10px 30px -18px rgba(0,0,0,0.8);
+    will-change: flex-grow, transform;
+    -webkit-tap-highlight-color: transparent;
+    transition: flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sandy-panel:focus-visible {
+    box-shadow: 0 0 0 2px var(--ag-accent), 0 10px 30px -18px rgba(0,0,0,0.8);
+  }
+  .sandy-panel-frame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+  .sandy-panel-media {
+    --ag-gray: 1;
+    --ag-dim: 0.35;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--ag-media-size);
+    height: 100%;
+    filter: grayscale(var(--ag-gray));
+    will-change: transform, filter;
+    transition: filter 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+.sandy-panel-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        max-width: 100%;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+  .sandy-panel-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--ag-overlay) 78%, transparent) 100%), color-mix(in srgb, var(--ag-overlay) calc(var(--ag-dim, 0.35) * 100%), transparent);
+  }
+  .sandy-panel-label {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .sandy-panel-bar {
+    flex: 0 0 auto;
+    width: 3px;
+    height: 26px;
+    border-radius: 3px;
+    background: var(--ag-accent);
+    opacity: 0;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--ag-accent) 60%, transparent);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sandy-panel-text {
+    color: var(--ag-text);
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    text-transform: uppercase;
+  }
+  .sandy-panel.is-active .sandy-panel-bar,
+  .sandy-panel.is-active .sandy-panel-text {
+    opacity: 1;
+  }
+  .sandy-panel.is-active .sandy-panel-media {
+    --ag-gray: 0;
+    --ag-dim: 0;
+    filter: grayscale(0);
+  }
+  .sandy-panel:not(.is-active) .sandy-panel-media {
+    filter: grayscale(1);
+  }
+  .sandy-panel.rotated-left {
+    transform: rotateY(8deg);
+  }
+  .sandy-panel.rotated-right {
+    transform: rotateY(-8deg);
+  }
+  .sandy-panel.is-active {
+    transform: rotateY(0deg);
+  }
+  .sandy-content {
+    padding: 44px 40px 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    max-height: 90vh;
+    min-height: 0;
+    border-left: 1px solid rgba(229,9,32,0.18);
+  }
+  .sandy-content .sandy-number {
+    font-family: 'Anton', sans-serif;
+    font-size: 14px;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+  }
+  .sandy-content .sandy-number::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 2px;
+    background: var(--red);
+  }
+  .sandy-content .sandy-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(30px, 3.6vw, 44px);
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    overflow: visible;
+    width: 100%;
+    letter-spacing: 0.01em;
+  }
+  .sandy-content .sandy-desc {
+    color: var(--bone-dim);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 480px;
+  }
+  .sandy-content .sandy-section {
+    margin-bottom: 18px;
+  }
+  .sandy-content .sandy-section h4 {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bone-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .sandy-content .sandy-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sandy-content .sandy-section ul li {
+    font-size: 14px;
+    color: var(--bone);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .sandy-content .sandy-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .sandy-content .sandy-section p {
+    color: var(--bone-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .sandy-content .sandy-meta {
+    font-size: 12px;
+    color: var(--bone-dim);
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+    line-height: 1.8;
+  }
+  .sandy-content .sandy-meta span {
+    color: var(--bone);
+  }
+  .sandy-content .sandy-cta-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .sandy-content .sandy-cta {
+    padding: 14px 34px;
+    background: var(--red);
+    color: var(--bone);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .sandy-content .sandy-cta:hover {
+    background: #ff0a24;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,31,44,0.4);
+  }
+  .sandy-content .sandy-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 20px;
+    padding-bottom: 4px;
+    border-top: 1px solid var(--line);
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.82), #0a0a0a 28%);
+  }
+  .sandy-content .sandy-nav-btn {
+    background: none;
+    border: none;
+    color: var(--bone-dim);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+  .sandy-content .sandy-nav-btn:hover {
+    color: var(--bone);
+  }
+  .sandy-content .sandy-nav-label {
+    font-family: 'Anton', sans-serif;
+    font-size: 13px;
+    color: var(--bone-dim);
+    letter-spacing: 0.04em;
+  }
+  .sandy-content .sandy-nav-label span {
+    color: var(--red);
+  }
+  .sandy-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(5,5,5,0.4);
+    border: 1px solid rgba(245,242,236,0.08);
+    color: var(--bone-dim);
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.3s, background 0.3s;
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .sandy-close:hover {
+    color: var(--bone);
+    background: rgba(229,9,32,0.2);
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .trainers-intro{max-width:650px;}
+  .trainers-sub{max-width:520px; color:var(--bone-dim); margin-top:22px; font-size:16px; line-height:1.7;}
+  .trainer-grid{margin-top:64px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);}
+  .trainer-card{background:var(--black); min-height:540px; display:flex; flex-direction:column; overflow:hidden; position:relative; border:1px solid transparent; transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);}
+  .trainer-card:hover{transform:translateY(-6px); border-color:rgba(229,9,32,0.55); box-shadow:0 20px 40px rgba(0,0,0,0.45); z-index:2;}
+  .trainer-image-wrap{height:270px; overflow:hidden; background:var(--charcoal-2);}
+  .trainer-image{width:100%; height:100%; object-fit:cover; object-position:center; filter:contrast(1.05) brightness(0.82) saturate(0.82); transition:transform .7s var(--ease), filter .5s var(--ease);}
+  .trainer-card:hover .trainer-image{transform:scale(1.06); filter:contrast(1.08) brightness(0.92) saturate(0.95);}
+  .trainer-content{padding:22px 24px 24px; display:flex; flex-direction:column; flex:1; background:linear-gradient(180deg, rgba(20,20,20,0.94), var(--black));}
+  .trainer-number{color:var(--red); font-family:'Anton',sans-serif; font-size:13px; letter-spacing:.08em; margin-bottom:12px;}
+  .trainer-name{font-family:'Anton',sans-serif; font-size:clamp(21px,2vw,27px); line-height:.95; text-transform:uppercase; letter-spacing:.02em; margin-bottom:9px;}
+  .trainer-role{color:var(--bone); font-size:12px; font-weight:600; line-height:1.4; text-transform:uppercase; letter-spacing:.05em;}
+  .trainer-description{font-size:13px; color:var(--bone-dim); line-height:1.55; margin-top:18px; flex:1;}
+  .trainer-experience{font-size:11px; color:var(--bone-dim); text-transform:uppercase; letter-spacing:.09em; padding-top:16px; margin-top:18px; border-top:1px solid var(--line);}
+  /* ===== MEMBERSHIP ===== */
+  .members-sec{background:var(--charcoal);}
+  .price-grid{margin-top:60px; display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  .price-card{border:1px solid var(--line); border-radius:8px; padding:34px 26px; display:flex; flex-direction:column; transition:transform .35s var(--ease), border-color .35s var(--ease); position:relative;}
+  .price-card:hover{transform:translateY(-8px); border-color:rgba(200,31,44,0.5);}
+  .price-card.recommended{border-color:var(--red); background:linear-gradient(180deg,rgba(200,31,44,0.08),transparent 40%);}
+  .price-tag{position:absolute; top:-13px; left:26px; background:var(--red); color:var(--bone); font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; letter-spacing:.06em;}
+  .price-dur{font-size:14px; color:var(--bone-dim); text-transform:uppercase; letter-spacing:.06em;}
+  .price-amt{font-family:'Anton'; font-size:44px; margin-top:14px;}
+  .price-amt sup{font-size:18px; margin-right:2px;}
+  .price-cta{margin-top:28px; text-align:center; padding:13px; border:1px solid var(--line); border-radius:4px; font-weight:600; font-size:14px; transition:all .3s;}
+  .price-card:hover .price-cta{background:var(--red); border-color:var(--red);}
+  .price-note{margin-top:26px; font-size:12.5px; color:var(--bone-dim);}
+  .offer-band{margin-top:60px; border-radius:12px; padding:48px; background:var(--charcoal-2); display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap; position:relative; overflow:hidden;}
+  .offer-band::before{content:''; position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(200,31,44,0.25), transparent 70%); top:-140px; right:-100px; animation:pulseGlow 5s ease-in-out infinite; pointer-events:none;}
+  @keyframes pulseGlow{0%,100%{opacity:0.6;}50%{opacity:1;}}
+  .offer-band h3{font-family:'Anton'; font-size:clamp(26px,3.4vw,40px); position:relative; z-index:1;}
+  .offer-band p{color:var(--bone-dim); margin-top:8px; position:relative; z-index:1;}
+
+  /* ===== ABOUT ===== */
+  .about-sec{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start;}
+  .about-copy p{color:var(--bone-dim); font-size:16px; line-height:1.75; margin-bottom:18px; max-width:520px;}
+  .about-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:26px;}
+  .about-tab{background:transparent; border:1px solid var(--line); border-radius:4px; color:var(--bone-dim); cursor:pointer; font:600 12px 'Inter',sans-serif; letter-spacing:.04em; padding:10px 14px; text-transform:uppercase; transition:all .3s var(--ease);}
+  .about-tab:hover,.about-tab.is-active{background:var(--red); border-color:var(--red); color:var(--bone);}
+  .about-panel{display:none; animation:aboutPanelIn .45s var(--ease) both;}
+  .about-panel.is-active{display:block;}
+  @keyframes aboutPanelIn{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:translateY(0);}}
+  .about-panel-label{color:var(--red); font-size:11px; font-weight:600; letter-spacing:.1em; margin-bottom:10px; text-transform:uppercase;}
+  .program-showcase{margin-top:80px; grid-column:1/-1;}
+  .program-showcase .section-tag{text-align:center;}
+  .program-showcase h2{
+    text-align:center;
+    max-width:100%;
+    margin-bottom:40px;
+    font-size:clamp(28px,4vw,48px);
+    line-height:0.95;
+    overflow:visible;
+    width:100%;
+  }
+
+  /* ===== CONTACT FORM ===== */
+  .contact-form-wrapper {
+    background: var(--charcoal-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 22px 24px 24px;
+  }
+  .contact-form-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    color: var(--bone);
+  }
+  .contact-form-subtitle {
+    color: var(--bone-dim);
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .gym-enquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bone);
+    letter-spacing: 0.02em;
+  }
+  .form-group label .required {
+    color: var(--red);
+    font-weight: 700;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--bone);
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+    outline: none;
+    width: 100%;
+  }
+  @media (pointer: coarse){
+    .form-input, .form-select, .form-textarea{font-size:16px;}
+  }
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--red);
+    background: rgba(229,9,32,0.04);
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--bone-dim);
+    opacity: 0.6;
+  }
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a5a5a5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+  }
+  .form-select option {
+    background: var(--charcoal);
+    color: var(--bone);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 200px;
+    line-height: 1.6;
+  }
+  .char-counter {
+    align-self: flex-end;
+    font-size: 11px;
+    color: var(--bone-dim);
+    margin-top: 4px;
+    transition: color 0.3s;
+  }
+  .char-counter.warning {
+    color: var(--red);
+  }
+  .form-status {
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: none;
+  }
+  .form-status.visible {
+    display: block;
+  }
+  .status-success {
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: #2ecc71;
+  }
+  .status-error {
+    background: rgba(229, 9, 32, 0.15);
+    border: 1px solid rgba(229, 9, 32, 0.3);
+    color: var(--red);
+  }
+  .status-warning {
+    background: rgba(241, 196, 15, 0.15);
+    border: 1px solid rgba(241, 196, 15, 0.3);
+    color: #f1c40f;
+  }
+  .status-info {
+    background: rgba(52, 152, 219, 0.15);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    color: #3498db;
+  }
+  .form-submit-btn {
+    background: var(--red);
+    color: var(--bone);
+    border: none;
+    border-radius: 6px;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    letter-spacing: 0.03em;
+    margin-top: 6px;
+    box-shadow: 0 4px 20px rgba(229, 9, 32, 0.25);
+  }
+  .form-submit-btn:hover:not(:disabled) {
+    background: #ff0a24;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(229, 9, 32, 0.4);
+  }
+  .form-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .contact-sec{background:var(--charcoal); padding-top:88px; padding-bottom:88px;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;}
+  .contact-info .section-title{margin-bottom:30px;}
+  .contact-grid > div:last-child{padding-top:36px;}
+  .contact-row{display:flex; justify-content:space-between; padding:15px 0; border-bottom:1px solid var(--line);}
+  .contact-row .k{color:var(--red); font-size:14px; display:flex; align-items:center; width:24px;}
+  .contact-row .k svg{width:20px; height:20px; display:block;}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  .contact-row .v{font-weight:600; font-size:15px; text-align:right;}
+  .contact-btns{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .contact-btns a{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; min-height:52px; border-radius:8px; font-weight:600; font-size:15px; border:1px solid var(--line); color:var(--bone); background:rgba(255,255,255,0.01); transition:all .3s var(--ease);}
+  .contact-btns a:hover{border-color:var(--red); background:rgba(200,31,44,0.08); transform:translateY(-1px);}
+  .contact-action-icon{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; color:var(--red); flex-shrink:0;}
+  .contact-action-icon svg{width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .map-frame{border:1px solid var(--line); border-radius:8px; min-height:280px; display:flex; align-items:center; justify-content:center; color:var(--bone-dim); font-size:14px; background:var(--charcoal-2); text-align:center; padding:20px;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:70px 6vw 40px; border-top:1px solid var(--line);}
+  .foot-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;}
+  .foot-logo{font-family:'Anton'; font-size:28px;}
+  .foot-links{display:flex; gap:24px; flex-wrap:wrap;}
+  .foot-links a{font-size:14px; color:var(--bone-dim);}
+  .foot-links a:hover{color:var(--bone);}
+  .foot-bottom{margin-top:50px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12.5px; color:var(--bone-dim);}
+
+  /* ===== WHATSAPP FLOATING ===== */
+  .wa-float{position:fixed; bottom:calc(26px + env(safe-area-inset-bottom)); right:calc(26px + env(safe-area-inset-right)); z-index:150; width:58px; height:58px; border-radius:50%; background:#1fae52; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.4); transition:transform .3s var(--ease); cursor:pointer;}
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-tooltip{position:absolute; right:70px; background:var(--bone); color:var(--black); padding:8px 14px; border-radius:6px; font-size:13px; font-weight:600; white-space:nowrap; opacity:0; transform:translateX(8px); transition:all .25s var(--ease); pointer-events:none;}
+  .wa-float:hover .wa-tooltip{opacity:1; transform:translateX(0);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1200px){
+    .trainer-grid{grid-template-columns:repeat(2,1fr);}
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+    .about-sec{gap:40px;}
+    .contact-grid{gap:28px;}
+  }
+
+  @media (max-width: 1024px){
+    .hero-content{grid-template-columns:1fr; gap:20px; max-height:none;}
+    .hero-copy{align-items:center; text-align:center;}
+    .hero-sub{max-width:100%;}
+    .hero-actions{justify-content:center;}
+    .hero-headline{font-size:clamp(36px,6vw,60px); text-align:center;}
+    .sandy-wrapper{grid-template-columns:1fr; max-height:95vh; overflow-y:auto;}
+    .sandy-gallery{min-height:300px; padding:14px 0 14px 14px;}
+    .sandy-content{padding:32px 28px; max-height:none;}
+    .driftwall-container{height:520px;}
+    .hero-strip{gap:24px;}
+  }
+
+  @media (max-width: 980px){
+    .trainer-grid{grid-template-columns:1fr 1fr;}
+    .price-grid{grid-template-columns:1fr 1fr;}
+    .about-sec{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .contact-grid > div:last-child{padding-top:0;}
+  }
+
+  @media (max-width: 768px){
+    .nav-wrap{top:12px; padding:0 12px;}
+    .nav{width:100%; max-width:520px; justify-content:space-between; padding:6px 8px 6px 16px;}
+    .nav-logo{margin-right:0; font-size:15px;}
+    .nav-links, .nav-cta, .nav-franchise{display:none;}
+    .mobile-menu .nav-franchise{display:block;}
+    .nav-burger{display:block; width:44px; height:44px; padding:10px 12px;}
+    
+    .hero{min-height:230vh; height:230vh;}
+    .hero-content{grid-template-columns:1fr; padding:80px 5vw 20px;}
+    .hero-copy{align-items:flex-start; text-align:left;}
+    .hero-headline{font-size:clamp(32px,8vw,64px); text-align:left;}
+    .hero-headline .line{white-space:normal;}
+    .hero-sub{font-size:14px;}
+    .hero-actions{width:100%; gap:10px;}
+    .btn-primary, .btn-secondary{justify-content:center; min-height:48px; padding:14px 18px;}
+    .hero-strip{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 20px; padding:16px 5vw 22px;}
+    .strip-item .v{font-size:13px; line-height:1.35;}
+    .hero-scroll-cue{display:none;}
+    
+    section{padding:80px 5vw;}
+    .section-title{font-size:clamp(28px,5vw,40px);}
+    .transform-title{font-size:clamp(28px,5vw,40px);}
+    
+    .sandy-overlay{padding:12px; align-items:flex-start; overflow-y:auto; overflow-x:hidden;}
+    .sandy-wrapper{max-height:min(100dvh,100vh); margin:12px 0; overflow-y:auto; overflow-x:hidden; border-radius:14px;}
+    .sandy-gallery{min-height:220px; flex-direction:column;}
+    .sandy-content{padding:24px 20px 28px; max-height:none; overflow:visible;}
+    .sandy-content .sandy-title{font-size:28px;}
+    .sandy-panel{min-height:60px;}
+    .sandy-gallery--vertical .sandy-panel{min-height:280px;}
+    .sandy-gallery--vertical .sandy-panel-media{width:100%; height:100%; max-height:none;}
+    
+    .driftwall-container{height:420px;}
+    .driftwall-plane{--dw-tile-w: 140px; --dw-tile-h: 92px; --dw-gap: 12px;}
+    
+    .contact-form-wrapper{padding:24px 18px 28px;}
+    .contact-form-title{font-size:20px;}
+    .form-input, .form-select, .form-textarea{padding:10px 14px;}
+    .form-submit-btn{padding:12px 24px; font-size:14px;}
+    .contact-grid > div:last-child{padding-top:12px;}
+    .contact-row{display:block; padding:16px 0;}
+    .contact-row .v{display:block; margin-top:6px; text-align:left; overflow-wrap:anywhere;}
+    .map-frame{min-height:220px;}
+    .wa-float{right:16px; bottom:16px; width:54px; height:54px;}
+    .wa-tooltip{display:none;}
+    
+  }
+
+  @media (max-width: 560px){
+    section{padding:60px 4vw;}
+    .hero-content{padding:70px 4vw 10px;}
+    .hero-headline{font-size:clamp(30px,9vw,48px);}
+    .section-title{font-size:clamp(24px,4.5vw,32px);}
+    .transform-title{font-size:clamp(24px,4.5vw,32px);}
+    .trainer-grid{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    .trainer-card{min-height:0;}
+    .trainer-image-wrap{height:230px;}
+    .sandy-gallery{min-height:180px;}
+    .sandy-content{padding:20px 16px 24px;}
+    .sandy-content .sandy-title{font-size:24px;}
+    .sandy-content .sandy-nav{flex-wrap:wrap; gap:12px; justify-content:center;}
+    .program-showcase h2{font-size:clamp(22px,4vw,30px);}
+    .driftwall-container{height:360px;}
+    .driftwall-plane{--dw-tile-w: 100px; --dw-tile-h: 66px; --dw-gap: 8px;}
+    .contact-form-wrapper{padding:18px 14px 22px;}
+    .offer-band{padding:30px 22px; gap:22px;}
+    .offer-band .btn-primary{width:100%;}
+    .foot-top{gap:28px;}
+    .foot-bottom{display:block; margin-top:36px;}
+    .foot-bottom span{display:block;}
+    .foot-bottom span + span{margin-top:10px;}
+  }
+
+  @media (max-width:400px){
+    .driftwall-container{height:320px;}
+    .driftwall-plane{--dw-tile-w: 80px; --dw-tile-h: 53px; --dw-gap: 6px;}
+    .hero-headline{font-size:clamp(24px,6vw,30px);}
+    .section-title{font-size:clamp(20px,4vw,26px);}
+    .hero-actions{flex-direction:column;}
+    .hero-actions a{width:100%;}
+    .hero-strip{padding-left:4vw; padding-right:4vw;}
+    .strip-item .v{font-size:12px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+    .driftwall-plane, .driftwall-track { will-change: auto; }
+    .sandy-panel, .sandy-panel-media { will-change: auto; }
+    .hero-headline .line span{opacity:1; transform:translateY(0); animation:none;}
+    .hero-sub, .hero-actions, .hero-strip{opacity:1; animation:none;}
+    .hero-content{opacity:1; transform:none;}
+    .hero-frame{clip-path:inset(0 round 0);}
+    .hero-image{transform:scale(1);}
+    .hero-scroll-cue{opacity:1;}
+    .nav-wrap{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== CINEMATIC HERO ===== -->
+
+<!-- ===== NAV ===== -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <div class="nav-logo">YUVA<span>.</span></div>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#programs">Programs</a>
+      <a href="#experience">Trainers</a>
+      <a href="#membership">Membership</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+<a href="franchise/gallery.html" class="nav-franchise">Franchise</a>
+    <a href="#membership" class="nav-cta">Join Yuva</a>
+    <div class="nav-burger" id="burger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></div>
+  </nav>
+</div>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="#hero">Home</a>
+  <a href="#programs">Programs</a>
+  <a href="#experience">Trainers</a>
+  <a href="#membership">Membership</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="franchise/gallery.html" class="nav-franchise">Franchise</a>
+  <a href="#membership" class="nav-cta">Join Yuva</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-stage">
+    <div class="hero-frame" id="heroFrame">
+      <img class="hero-image" id="heroImage" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=2400&q=85" srcset="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80 800w, https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=85 1600w, https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=2400&q=85 2400w" sizes="100vw" alt="Premium gym training at YUVA" fetchpriority="high" decoding="async">
+      <div class="hero-image-overlay"></div>
+    </div>
+    <div class="hero-content" id="heroContent">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">YUVA Lifestyle &amp; Fitness Studio</div>
+        <h1 class="hero-headline display">
+          <span class="line"><span>Build Your</span></span>
+          <span class="line"><span><span class="accent">Strongest Self.</span></span></span>
+        </h1>
+        <p class="hero-sub">Premium training. Expert guidance. A stronger version of you.</p>
+        <div class="hero-actions">
+          <a href="#membership" class="btn-primary">Start Your Journey →</a>
+          <a href="#experience" class="btn-secondary">Explore The Studio</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-strip">
+      <div class="strip-item"><div class="k">Open Daily</div><div class="v">5:30 AM – 10:30 PM</div></div>
+      <div class="strip-item"><div class="k">Location</div><div class="v">Varadharajapuram, Tamil Nadu</div></div>
+      <div class="strip-item"><div class="k">Fitness Studio</div><div class="v">Unisex Training</div></div>
+      <div class="strip-item"><div class="k">Performance Index</div><div class="v" style="color:var(--red);">96%</div></div>
+    </div>
+    <div class="hero-scroll-cue" id="heroScrollCue">Scroll To Explore ↓</div>
+  </div>
+</section>
+
+<!-- ===== TRANSFORMATION ===== -->
+<section class="transform-sec">
+  <div class="transform-title display reveal" id="transformTitle">
+    <span class="line"><span>Your body can change.</span></span>
+    <span class="line"><span>So can you.</span></span>
+  </div>
+  <p class="transform-sub reveal reveal-delay-2">A structured, consistent training environment built around one goal — helping you become measurably stronger, fitter and more confident, one session at a time.</p>
+</section>
+
+<!-- ===== PROGRAMS ===== -->
+<section id="programs">
+  <div class="section-tag reveal">What we offer</div>
+  <h2 class="section-title display reveal">Train For More.</h2>
+  <div class="driftwall-container" id="driftwallContainer">
+    <div class="driftwall-plane" id="driftwallPlane"></div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="trainers-intro">
+    <div class="section-tag reveal">The people behind your progress</div>
+    <h2 class="section-title display reveal">Meet Your Trainers.</h2>
+    <p class="trainers-sub reveal reveal-delay-1">Experienced coaches. Personalized training. Real results.</p>
+  </div>
+  <div class="trainer-grid" id="trainerGrid"></div>
+</section>
+
+<!-- ===== MEMBERSHIP ===== -->
+<section class="members-sec" id="membership">
+  <div class="section-tag reveal">Pricing</div>
+  <h2 class="section-title display reveal">Choose Your Commitment.</h2>
+  <div class="price-grid" id="priceGrid"></div>
+  <p class="price-note reveal">Pricing subject to confirmation.</p>
+  <div class="offer-band reveal">
+    <div>
+      <h3 class="display">Special Offers Available</h3>
+      <p>Ask our team about current membership offers.</p>
+    </div>
+    <a href="#contact" class="btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-sec">
+    <div class="reveal">
+      <div class="section-tag">About Yuva</div>
+      <h2 class="section-title display">More Than A Gym.<br>A Place To Build Yourself.</h2>
+    </div>
+    <div class="about-copy reveal reveal-delay-1">
+      <div class="about-tabs" role="tablist" aria-label="About Yuva topics">
+        <button class="about-tab is-active" type="button" role="tab" id="tab-aboutApproach" aria-selected="true" aria-controls="aboutApproach" data-about-tab="aboutApproach">Our Approach</button>
+        <button class="about-tab" type="button" role="tab" id="tab-aboutExperience" aria-selected="false" aria-controls="aboutExperience" data-about-tab="aboutExperience">Your Experience</button>
+        <button class="about-tab" type="button" role="tab" id="tab-aboutProgress" aria-selected="false" aria-controls="aboutProgress" data-about-tab="aboutProgress">Your Progress</button>
+      </div>
+      <div class="about-panel is-active" id="aboutApproach" role="tabpanel" aria-labelledby="tab-aboutApproach">
+        <div class="about-panel-label">Built around real progress</div>
+        <p>YUVA Fit &amp; Physique is a unisex fitness studio built around real, sustainable progress — strength training, weight loss, muscle building, functional conditioning and personal guidance in one space.</p>
+      </div>
+      <div class="about-panel" id="aboutExperience" role="tabpanel" aria-labelledby="tab-aboutExperience">
+        <div class="about-panel-label">Training with purpose</div>
+        <p>Whether your goal is your first pull-up or your tenth year of training, the approach here is the same: consistent effort, sound programming and coaching that pays attention.</p>
+      </div>
+      <div class="about-panel" id="aboutProgress" role="tabpanel" aria-labelledby="tab-aboutProgress">
+        <div class="about-panel-label">Stronger, one session at a time</div>
+        <p>Every program is shaped around your starting point, your goals and your pace, so each session builds confidence as well as measurable strength and fitness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SANDY MODAL ===== -->
+<div class="sandy-overlay" id="sandyOverlay" role="dialog" aria-modal="true" aria-labelledby="sandyTitle" aria-hidden="true" inert>
+  <div class="sandy-wrapper">
+    <button class="sandy-close" id="sandyClose" aria-label="Close program details">✕</button>
+    <div class="sandy-gallery" id="sandyGallery"></div>
+    <div class="sandy-content" id="sandyContent">
+      <div class="sandy-number" id="sandyNumber">01</div>
+      <h2 class="sandy-title" id="sandyTitle">Strength</h2>
+      <p class="sandy-desc" id="sandyDesc">Build real strength with progressive resistance training.</p>
+      <div class="sandy-section">
+        <h4>Training Focus</h4>
+        <ul id="sandyFocus"></ul>
+      </div>
+      <div class="sandy-section">
+        <h4>Benefits</h4>
+        <ul id="sandyBenefits"></ul>
+      </div>
+      <div class="sandy-section">
+        <h4>Suitable For</h4>
+        <p id="sandySuitable"></p>
+      </div>
+      <div class="sandy-meta" id="sandyMeta">
+        Training style — <span>Resistance training</span> &nbsp;·&nbsp; Intensity — <span>Beginner → Intermediate</span>
+      </div>
+      <div class="sandy-cta-row">
+        <a href="#membership" class="sandy-cta" id="sandyCta">Start Training</a>
+      </div>
+      <div class="sandy-nav">
+        <button class="sandy-nav-btn" id="sandyPrevBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+          Previous
+        </button>
+        <span class="sandy-nav-label" id="sandyNavLabel">01 <span>—</span> STRENGTH</span>
+        <button class="sandy-nav-btn" id="sandyNextBtn">
+          Next
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-sec" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal reveal-delay-1">
+      <div class="section-tag reveal">Get in touch</div>
+      <h2 class="section-title display reveal">Start Your Fitness Journey</h2>
+      <div class="contact-row"><span class="k" title="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"/></svg><span class="sr-only">Phone</span></span><span class="v">+91 733-8881560</span></div>
+      <div class="contact-row"><span class="k" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.78 15.62L2.5 21.5l6-1.25A10 10 0 1 0 20.5 3.5z"/><path d="M8.5 7.5c.2-.45.42-.46.7-.46h.6c.2 0 .4.08.5.4l.7 1.7c.1.25.05.45-.1.62l-.5.62c-.15.18-.1.35 0 .52a8.3 8.3 0 0 0 3.55 3.55c.18.1.35.15.52 0l.62-.5c.17-.15.37-.2.62-.1l1.7.7c.32.1.4.3.4.5v.6c0 .28-.01.5-.46.7-.45.2-1.58.5-2.98-.2a10.5 10.5 0 0 1-4.1-3.1 10.5 10.5 0 0 1-2.05-3.25c-.7-1.4-.4-2.53-.2-2.98z"/></svg><span class="sr-only">WhatsApp</span></span><span class="v">7358351558</span></div>
+      <div class="contact-row"><span class="k" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="sr-only">Email</span></span><span class="v">yuvafitnessphysique@gmail.com</span></div>
+      <div class="contact-row"><span class="k" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="sr-only">Instagram</span></span><span class="v"><a href="https://www.instagram.com/yuva..fitandphysique..brand/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">@yuva..fitandphysique..brand</a></span></div>
+      <div class="contact-row"><span class="k" title="Location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="sr-only">Location</span></span><span class="v">23WH+VG, Varadharajapuram, Tamil Nadu</span></div>
+      <div class="contact-row"><span class="k" title="Hours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="sr-only">Hours</span></span><span class="v">5:30 AM – 10:30 PM</span></div>
+      <div class="contact-btns">
+        <a href="tel:+917338881560"><span class="contact-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"/></svg></span><span>Call Now</span></a>
+        <a href="https://wa.me/917358351558?text=Hi%20YUVA%20FITNESS%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20gym%2C%20membership%20plans%2C%20programs%2C%20and%20facilities." target="_blank" rel="noopener"><span class="contact-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A10 10 0 0 0 3.78 15.62L2.5 21.5l6-1.25A10 10 0 1 0 20.5 3.5z"/><path d="M8.5 7.5c.2-.45.42-.46.7-.46h.6c.2 0 .4.08.5.4l.7 1.7c.1.25.05.45-.1.62l-.5.62c-.15.18-.1.35 0 .52a8.3 8.3 0 0 0 3.55 3.55c.18.1.35.15.52 0l.62-.5c.17-.15.37-.2.62-.1l1.7.7c.32.1.4.3.4.5v.6c0 .28-.01.5-.46.7-.45.2-1.58.5-2.98-.2a10.5 10.5 0 0 1-4.1-3.1 10.5 10.5 0 0 1-2.05-3.25c-.7-1.4-.4-2.53-.2-2.98z"/></svg></span><span>WhatsApp</span></a>
+        <a href="https://www.google.com/maps/search/?api=1&query=23WH%2BVG+Varadharajapuram+Tamil+Nadu" target="_blank" rel="noopener"><span class="contact-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>Get Directions</span></a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="contact-form-wrapper">
+        <h3 class="contact-form-title">Get In Touch</h3>
+        <p class="contact-form-subtitle">Tell us about your fitness goals and we'll get back to you.</p>
+        <form id="gymEnquiryForm" class="gym-enquiry-form" novalidate>
+          <input type="text" name="website" style="display:none" aria-hidden="true" tabindex="-1" autocomplete="off">
+          <div class="form-group">
+            <label for="enquiryName">Your Name <span class="required">*</span></label>
+            <input type="text" id="enquiryName" name="name" placeholder="Enter your full name" required autocomplete="name" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="enquiryPhone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="enquiryPhone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="enquiryEmail">Email Address <span class="required">*</span></label>
+            <input type="email" id="enquiryEmail" name="email" placeholder="you@example.com" required autocomplete="email" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="enquiryGoal">Fitness Goal <span class="required">*</span></label>
+            <select id="enquiryGoal" name="fitnessGoal" required class="form-select">
+              <option value="">Select your fitness goal</option>
+              <option value="Muscle Building">Muscle Building</option>
+              <option value="Weight Loss">Weight Loss</option>
+              <option value="Strength Training">Strength Training</option>
+              <option value="General Fitness">General Fitness</option>
+              <option value="Personal Training">Personal Training</option>
+              <option value="Cardio &amp; Conditioning">Cardio &amp; Conditioning</option>
+              <option value="Functional Training">Functional Training</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="enquiryMessage">Your Message <span class="required">*</span></label>
+            <textarea id="enquiryMessage" name="message" placeholder="Tell us about your fitness goal, current fitness level, or anything you'd like to know..." required maxlength="500" class="form-textarea"></textarea>
+            <span class="char-counter" id="charCounter">0 / 500</span>
+          </div>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          <button type="submit" class="form-submit-btn" id="submitEnquiry">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-logo">YUVA<span style="color:var(--red)">.</span></div>
+    <div class="foot-links">
+      <a href="#hero">Home</a>
+      <a href="#programs">Programs</a>
+      <a href="#membership">Membership</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>yuvafitnessphysique@gmail.com · +91 733-8881560 · 5:30 AM – 10:30 PM</span>
+    <span>Membership pricing and facility information are subject to confirmation.</span>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP FLOATING ===== -->
+<a class="wa-float" href="https://wa.me/917358351558?text=Hi%20YUVA%20FITNESS%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20gym%2C%20membership%20plans%2C%20programs%2C%20and%20facilities." target="_blank" rel="noopener">
+  <span class="wa-tooltip">Chat with YUVA</span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.24-1.11a7.9 7.9 0 0 0 3.8 .97h0a7.94 7.94 0 0 0 5.56-13.54zM12.05 18.4a6.57 6.57 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.6 6.6 0 1 1 5.59 3.09zm3.6-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.59-.98 6 6 0 0 1-1.1-1.37c-.12-.2 0-.3.09-.4.09-.1.2-.24.3-.36.1-.12.13-.2.2-.34a.37.37 0 0 0 0-.35c0-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.34h-.38a.72.72 0 0 0-.52.24 2.2 2.2 0 0 0-.68 1.63c0 .96.7 1.9.8 2.03.1.13 1.38 2.1 3.34 2.95.47.2.83.32 1.12.41.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94.16-.46.16-.86.12-.94-.05-.1-.18-.15-.38-.25z"/></svg>
+</a>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// MOBILE MENU
+const burger = document.getElementById('burger');
+const menu = document.getElementById('mobileMenu');
+let menuLastFocus = null;
+function toggleMenu(){
+  const isOpen = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (isOpen) {
+    menuLastFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    const first = menu.querySelector('a');
+    if (first) first.focus({preventScroll:true});
+  } else {
+    document.body.style.overflow = '';
+    if (menuLastFocus && menuLastFocus.focus) menuLastFocus.focus({preventScroll:true});
+  }
+}
+burger.addEventListener('click', toggleMenu);
+burger.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleMenu(); }
+});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+  menu.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  if (menuLastFocus && menuLastFocus.focus) menuLastFocus.focus({preventScroll:true});
+}));
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && menu.classList.contains('open')){
+    e.preventDefault();
+    toggleMenu();
+  }
+});
+
+// NAVBAR HIDE-ON-SCROLL (same behavior as Franchise page)
+(function(){
+  const navWrap = document.querySelector('.nav-wrap');
+  if(!navWrap) return;
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+  const HIDE_AFTER = 140;
+  const DELTA = 6;
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function updateNav(){
+    ticking = false;
+    const y = window.scrollY || 0;
+    if(reduceMotion){ navWrap.classList.remove('nav-hidden'); lastY = y; return; }
+    if(menu.classList.contains('open')){ lastY = y; return; }
+    if(y <= 0){ navWrap.classList.remove('nav-hidden'); }
+    else if(y > lastY + DELTA && y > HIDE_AFTER){ navWrap.classList.add('nav-hidden'); }
+    else if(y < lastY - DELTA){ navWrap.classList.remove('nav-hidden'); }
+    lastY = y;
+  }
+  window.addEventListener('scroll', ()=>{
+    if(!ticking){ ticking = true; requestAnimationFrame(updateNav); }
+  }, {passive:true});
+  updateNav();
+})();
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal, .transform-title');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('in'); }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+
+// ABOUT TOPICS
+const aboutTabs = Array.from(document.querySelectorAll('[data-about-tab]'));
+const aboutPanels = document.querySelectorAll('.about-panel');
+function activateAboutTab(tab) {
+  const targetId = tab.dataset.aboutTab;
+  aboutTabs.forEach(item => {
+    const isActive = item === tab;
+    item.classList.toggle('is-active', isActive);
+    item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    item.tabIndex = isActive ? 0 : -1;
+  });
+  aboutPanels.forEach(panel => panel.classList.toggle('is-active', panel.id === targetId));
+}
+aboutTabs.forEach(tab => {
+  tab.addEventListener('click', () => activateAboutTab(tab));
+  tab.addEventListener('keydown', (e) => {
+    const idx = aboutTabs.indexOf(tab);
+    let next = null;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = aboutTabs[(idx + 1) % aboutTabs.length];
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = aboutTabs[(idx - 1 + aboutTabs.length) % aboutTabs.length];
+    else if (e.key === 'Home') next = aboutTabs[0];
+    else if (e.key === 'End') next = aboutTabs[aboutTabs.length - 1];
+    if (next) {
+      e.preventDefault();
+      activateAboutTab(next);
+      next.focus();
+    }
+  });
+});
+
+// CINEMATIC HERO SCROLL EXPAND
+const heroRoot = document.getElementById('hero');
+const heroFrame = document.getElementById('heroFrame');
+const heroImage = document.getElementById('heroImage');
+const heroContent = document.getElementById('heroContent');
+const heroScrollCue = document.getElementById('heroScrollCue');
+let heroProgress = 0;
+let heroTarget = 0;
+let heroRaf = 0;
+
+function heroSmoothstep(start, end, value) {
+  const t = Math.min(1, Math.max(0, (value - start) / (end - start || 1)));
+  return t * t * (3 - 2 * t);
+}
+
+function renderHero(progress) {
+  if (!heroFrame) return;
+  const eased = heroSmoothstep(0, 1, progress);
+  const width = 42 + 58 * eased;
+  const height = 58 + 42 * eased;
+  const insetX = (100 - width) / 2;
+  const insetY = (100 - height) / 2;
+  heroFrame.style.clipPath = `inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round ${24 * (1 - eased)}px)`;
+  heroImage.style.transform = `scale(${1.35 - 0.35 * eased})`;
+  const contentIn = heroSmoothstep(0.12, 0.72, progress);
+  heroContent.style.opacity = contentIn;
+  heroContent.style.transform = `translate3d(${-24 * (1 - contentIn)}px,${14 * (1 - contentIn)}px,0)`;
+  heroScrollCue.style.opacity = `${1 - heroSmoothstep(0, 0.16, progress)}`;
+  heroScrollCue.style.transform = `translate3d(0,${8 * heroSmoothstep(0, 0.16, progress)}px,0)`;
+}
+
+function updateHeroScroll() {
+  if (!heroRoot) return;
+  heroTarget = Math.min(1, Math.max(0, window.scrollY / Math.max(1, window.innerHeight * 1.2)));
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroProgress = heroTarget;
+    renderHero(heroProgress);
+    return;
+  }
+  if (heroRaf) return;
+  const tick = () => {
+    heroProgress += (heroTarget - heroProgress) * 0.1;
+    if (Math.abs(heroTarget - heroProgress) < 0.0004) heroProgress = heroTarget;
+    renderHero(heroProgress);
+    heroRaf = heroProgress === heroTarget ? 0 : requestAnimationFrame(tick);
+  };
+  heroRaf = requestAnimationFrame(tick);
+}
+
+window.addEventListener('scroll', updateHeroScroll, {passive:true});
+window.addEventListener('resize', updateHeroScroll);
+updateHeroScroll();
+
+// PROGRAM DATA
+const programs = [
+  {id:1,number:"01",title:"STRENGTH",cardImage:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=2400&q=85",shortDesc:"Progressive resistance training to build a stronger foundation.",desc:"Progressive resistance training designed to build foundational strength, improve movement control, and develop overall physical capacity.",focus:["Foundational strength","Compound movements","Progressive resistance","Barbell and dumbbell training","Movement technique"],benefits:["Builds overall strength","Improves movement control","Supports stronger muscles and bones","Enhances physical performance"],suitableFor:"Beginners and members looking to develop a stronger physical foundation.",trainingStyle:"Resistance training",intensity:"Beginner → Intermediate",cta:"START STRENGTH"},
+  {id:2,number:"02",title:"FITNESS",cardImage:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=2400&q=85",shortDesc:"Comprehensive training for endurance, stamina and everyday performance.",desc:"Comprehensive fitness training focused on endurance, conditioning, mobility, and everyday physical performance.",focus:["Cardiovascular endurance","Stamina development","Full-body conditioning","Mobility","General fitness"],benefits:["Improves endurance","Supports cardiovascular fitness","Increases daily energy","Improves mobility and movement"],suitableFor:"Members who want to improve overall fitness, stamina, and everyday performance.",trainingStyle:"Cardiovascular + conditioning",intensity:"Beginner → Advanced",cta:"START FITNESS"},
+  {id:3,number:"03",title:"MUSCLE BUILDING",cardImage:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=2400&q=85",shortDesc:"Hypertrophy-focused training to stimulate muscle growth.",desc:"Structured hypertrophy-focused training designed to stimulate muscle growth through progressive resistance and controlled exercise selection.",focus:["Hypertrophy","Progressive overload","Exercise technique","Training volume","Intensity management"],benefits:["Supports muscle development","Builds strength","Improves body symmetry","Enhances muscular definition"],suitableFor:"Members focused on developing muscle size, strength, and physique.",trainingStyle:"Hypertrophy / resistance training",intensity:"Intermediate → Advanced",cta:"START MUSCLE BUILDING"},
+  {id:4,number:"04",title:"WEIGHT LOSS",cardImage:"https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=2400&q=85",shortDesc:"Structured training for sustainable, consistent fat loss.",desc:"Structured training designed to support sustainable fat loss through conditioning, resistance training, and consistent activity.",focus:["Calorie expenditure","Conditioning","Resistance training","Cardiovascular fitness","Sustainable activity"],benefits:["Supports healthy fat loss","Improves fitness","Builds strength","Encourages consistent activity"],suitableFor:"Members working toward sustainable body-composition and fitness goals.",trainingStyle:"Conditioning + resistance",intensity:"Beginner → Intermediate",cta:"START WEIGHT LOSS"},
+  {id:5,number:"05",title:"FUNCTIONAL TRAINING",cardImage:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=2400&q=85",shortDesc:"Practical movement training for strength and coordination.",desc:"Movement-focused training built around practical strength, coordination, mobility, and physical performance.",focus:["Functional movements","Strength development","Mobility","Balance and coordination","Work capacity"],benefits:["Improves movement quality","Develops practical strength","Enhances coordination","Builds work capacity"],suitableFor:"Members who want stronger, more capable movement for training and everyday life.",trainingStyle:"Functional training",intensity:"Beginner → Advanced",cta:"START FUNCTIONAL TRAINING"},
+  {id:6,number:"06",title:"ZUMBA",cardImage:"https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=2400&q=85",shortDesc:"High-energy dance fitness sessions for the whole body.",desc:"High-energy dance fitness sessions combining rhythmic movement with cardiovascular conditioning in an enjoyable group environment.",focus:["Dance-based cardio","Endurance","Coordination","Rhythm","Full-body movement"],benefits:["Improves cardiovascular fitness","Burns calories","Builds endurance","Makes exercise more enjoyable"],suitableFor:"Members looking for energetic group workouts with music, movement, and cardio.",trainingStyle:"Dance fitness",intensity:"Beginner → Intermediate",cta:"START ZUMBA"},
+  {id:7,number:"07",title:"CROSSFIT",cardImage:"https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=2400&q=85",shortDesc:"Varied, high-intensity functional movements.",desc:"High-intensity functional training combining strength, conditioning, and varied movements to challenge overall physical performance.",focus:["Functional movements","Strength development","Conditioning","Work capacity","Skill progression"],benefits:["Develops strength and conditioning","Builds work capacity","Enhances athletic performance","Improves mental resilience"],suitableFor:"Members comfortable with challenging functional training and progressive workouts.",trainingStyle:"High-intensity functional training",intensity:"Intermediate → Advanced",cta:"START CROSSFIT"},
+  {id:8,number:"08",title:"HIIT",cardImage:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=2400&q=85",shortDesc:"Short, intense intervals for maximum efficiency.",desc:"Short, intense training intervals designed to challenge cardiovascular fitness, conditioning, and overall work capacity.",focus:["High-intensity intervals","Cardiovascular conditioning","Metabolic conditioning","Work capacity","Recovery management"],benefits:["Improves cardiovascular fitness","Efficient full-body training","Builds conditioning","Challenges work capacity"],suitableFor:"Members who enjoy short, challenging workouts and high-energy training.",trainingStyle:"High-intensity interval training",intensity:"Intermediate → Advanced",cta:"START HIIT"},
+  {id:9,number:"09",title:"WEIGHT LOSS PROGRAMS",cardImage:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=2400&q=85",shortDesc:"A structured transformation program with professional guidance.",desc:"A structured transformation program combining strength training, conditioning, activity planning, and nutritional guidance.",focus:["Regular activity","Conditioning","Strength training","Progress tracking","Lifestyle consistency"],benefits:["Supports sustainable exercise habits","Combines strength and conditioning","Provides structured guidance","Makes progress measurable"],suitableFor:"Members working toward long-term body-composition goals with structured support.",trainingStyle:"Strength + conditioning",intensity:"Customized",cta:"START WEIGHT LOSS PROGRAM"},
+  {id:10,number:"10",title:"MUSCLE BUILDING PROGRAMS",cardImage:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=2400&q=85",shortDesc:"A structured bodybuilding program with expert progression.",desc:"A structured bodybuilding program built around progressive resistance training, exercise selection, volume management, and consistent progression.",focus:["Hypertrophy","Progressive overload","Exercise selection","Training volume","Recovery management"],benefits:["Supports consistent muscle growth","Builds strength","Improves physique development","Provides structured progression"],suitableFor:"Members who want a structured approach to muscle development and bodybuilding.",trainingStyle:"Bodybuilding + resistance training",intensity:"Intermediate → Advanced",cta:"START MUSCLE BUILDING PROGRAM"},
+  {id:11,number:"11",title:"NUTRITION GUIDANCE",cardImage:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=80",detailImage:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=2400&q=85",shortDesc:"Professional nutrition support to complement your training.",desc:"Professional nutrition support designed to complement training through practical food choices, meal structure, and sustainable eating habits.",focus:["Balanced nutrition","Training support","Meal planning","Protein and nutrient awareness"],benefits:["Supports training goals","Encourages structured eating habits","Helps improve nutritional consistency","Complements strength and fitness training"],suitableFor:"Members who want nutrition guidance alongside their training program.",trainingStyle:"Nutrition support",intensity:"Customized",cta:"GET NUTRITION GUIDANCE"}
+];
+
+// TRAINERS
+const trainers = [
+  {number:"01", name:"ARJUN KUMAR", role:"Strength & Conditioning Coach", image:"https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=1000&q=85", desc:"Focused on progressive strength training, performance and sustainable muscle development.", experience:"8+ Years Experience"},
+  {number:"02", name:"PRIYA SHARMA", role:"Fitness & Transformation Coach", image:"https://images.unsplash.com/photo-1594381898411-846e7d193883?w=1000&q=85", desc:"Helping members build confidence through structured training and sustainable lifestyle changes.", experience:"6+ Years Experience"},
+  {number:"03", name:"RAHUL MENON", role:"Personal Training Coach", image:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1000&q=85", desc:"Personalized programs designed around strength, mobility and individual fitness goals.", experience:"7+ Years Experience"},
+  {number:"04", name:"ANANYA RAO", role:"Nutrition & Wellness Coach", image:"https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=1000&q=85", desc:"Combining practical nutrition guidance with effective training for long-term results.", experience:"5+ Years Experience"}
+];
+
+const trainerGrid = document.getElementById('trainerGrid');
+trainers.forEach((trainer, i) => {
+  const div = document.createElement('div');
+  div.className = 'trainer-card reveal';
+  div.style.transitionDelay = (i * 0.1) + 's';
+  div.innerHTML = `
+    <div class="trainer-image-wrap"><img class="trainer-image" src="${trainer.image}" alt="${trainer.name}" loading="lazy"></div>
+    <div class="trainer-content">
+      <div class="trainer-number">${trainer.number}</div>
+      <h3 class="trainer-name">${trainer.name}</h3>
+      <div class="trainer-role">${trainer.role}</div>
+      <p class="trainer-description">${trainer.desc}</p>
+      <div class="trainer-experience">${trainer.experience}</div>
+    </div>
+  `;
+  trainerGrid.appendChild(div);
+  io.observe(div);
+});
+
+// PRICING
+const prices = [["1 Month","1,999", false],["3 Months","4,499", false],["6 Months","5,999", true],["12 Months","8,499", false]];
+const priceGrid = document.getElementById('priceGrid');
+prices.forEach((p,i)=>{
+  const card = document.createElement('div');
+  card.className = 'price-card reveal' + (p[2] ? ' recommended':'');
+  card.style.transitionDelay = (i*0.08)+'s';
+  card.innerHTML = `${p[2] ? '<div class="price-tag">Recommended</div>' : ''}<div class="price-dur">${p[0]}</div><div class="price-amt"><sup>₹</sup>${p[1]}</div><a href="#contact" class="price-cta" style="display:block;text-align:center;text-decoration:none">Get Started</a>`;
+  priceGrid.appendChild(card);
+  io.observe(card);
+});
+
+// ===== DRIFTWALL =====
+const driftContainer = document.getElementById('driftwallContainer');
+const driftPlane = document.getElementById('driftwallPlane');
+const COLUMNS = 5;
+const TILE_W = 200;
+const TILE_H = 132;
+const GAP = 18;
+const TILT = 16;
+const TURN = -14;
+const DEPTH = 120;
+const SPEED = 42;
+const DIRECTION = 'up';
+const VARIANCE = 0.45;
+const PARALLAX = 0.6;
+const LIFT = 64;
+
+let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let containerHeight = 620;
+let activeTileId = null;
+let wallHovered = false;
+let hoveredCol = -1;
+let offsets = [];
+let velocities = [];
+let pointerX = 0, pointerY = 0;
+let dampedX = 0, dampedY = 0;
+let lastTs = null;
+let rafId = null;
+let driftVisible = document.visibilityState !== 'hidden';
+
+const columnItems = [];
+for (let c = 0; c < COLUMNS; c++) {
+  columnItems.push([]);
+  for (let i = c; i < programs.length; i += COLUMNS) {
+    columnItems[c].push(programs[i]);
+  }
+  if (columnItems[c].length === 0) {
+    columnItems[c].push(programs[0]);
+  }
+}
+
+let columnMeta = [];
+function updateColumnMeta() {
+  const unit = TILE_H + GAP;
+  columnMeta = columnItems.map(col => {
+    const copyHeight = Math.max(unit, col.length * unit);
+    const copies = Math.max(2, Math.ceil((containerHeight * 1.6) / copyHeight) + 1);
+    return { copyHeight, copies };
+  });
+}
+updateColumnMeta();
+
+function buildDriftWall() {
+  driftPlane.innerHTML = '';
+  const colElements = [];
+  for (let c = 0; c < COLUMNS; c++) {
+    const colDiv = document.createElement('div');
+    colDiv.className = 'driftwall-col';
+    const trackDiv = document.createElement('div');
+    trackDiv.className = 'driftwall-track';
+    trackDiv.dataset.col = c;
+    const meta = columnMeta[c];
+    const items = columnItems[c];
+    for (let copy = 0; copy < meta.copies; copy++) {
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const tileId = `${c}-${copy}-${i}`;
+        const tile = document.createElement('div');
+        tile.className = 'driftwall-tile';
+        tile.dataset.tileId = tileId;
+        tile.dataset.col = c;
+        tile.dataset.index = programs.indexOf(item);
+        tile.tabIndex = 0;
+        tile.role = 'button';
+        tile.setAttribute('aria-label', item.title);
+        tile.innerHTML = `
+          <div class="driftwall-tile-inner">
+            <img src="${item.cardImage}" alt="${item.title}" loading="lazy" draggable="false">
+            <div class="driftwall-tile-overlay"></div>
+          </div>
+          <div class="driftwall-tile-label">${item.number} ${item.title}</div>
+        `;
+        tile.addEventListener('click', () => {
+          const idx = parseInt(tile.dataset.index);
+          openProgramDetail(idx);
+        });
+        tile.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const idx = parseInt(tile.dataset.index);
+            openProgramDetail(idx);
+          }
+        });
+        tile.addEventListener('mouseenter', () => {
+          activeTileId = tileId;
+          hoveredCol = c;
+          updateActiveTiles();
+        });
+        tile.addEventListener('mouseleave', () => {
+          if (activeTileId === tileId) {
+            activeTileId = null;
+            hoveredCol = -1;
+            updateActiveTiles();
+          }
+        });
+        tile.addEventListener('focus', () => {
+          activeTileId = tileId;
+          hoveredCol = c;
+          updateActiveTiles();
+        });
+        tile.addEventListener('blur', () => {
+          activeTileId = null;
+          hoveredCol = -1;
+          updateActiveTiles();
+        });
+        trackDiv.appendChild(tile);
+      }
+    }
+    colDiv.appendChild(trackDiv);
+    driftPlane.appendChild(colDiv);
+    colElements.push(trackDiv);
+  }
+  window.driftTracks = colElements;
+  offsets = columnMeta.map((meta, c) => meta.copyHeight * ((c * 0.37) % 1));
+  velocities = columnItems.map(() => 0);
+  updateActiveTiles();
+}
+
+function updateActiveTiles() {
+  const tiles = document.querySelectorAll('.driftwall-tile');
+  tiles.forEach(tile => {
+    const id = tile.dataset.tileId;
+    if (id === activeTileId) {
+      tile.classList.add('is-active');
+    } else {
+      tile.classList.remove('is-active');
+    }
+  });
+}
+
+function getBaseVelocities() {
+  const dirSign = DIRECTION === 'up' ? 1 : -1;
+  return columnItems.map((_, c) => {
+    const altSign = c % 2 === 0 ? 1 : -1;
+    const pseudo = ((c * 0.6180339887 + 0.35) % 1) * 2 - 1;
+    const factor = 1 + VARIANCE * pseudo;
+    return SPEED * factor * dirSign * altSign;
+  });
+}
+const baseVels = getBaseVelocities();
+
+function applyPlaneTransform(px, py) {
+  driftPlane.style.transform = 
+    `translate(-50%, -50%) scale(1.18) ` +
+    `rotateX(${TILT + py}deg) rotateY(${TURN + px}deg) translateZ(${-DEPTH}px)`;
+}
+
+function driftAnimate(ts) {
+  if (lastTs === null) lastTs = ts;
+  const dt = Math.min(0.05, Math.max(0, (ts - lastTs) / 1000));
+  lastTs = ts;
+  const maxTilt = PARALLAX * 8;
+  const targetX = pointerX * maxTilt;
+  const targetY = -pointerY * maxTilt;
+  const damp = 1 - Math.exp(-dt / 0.12);
+  dampedX += (targetX - dampedX) * damp;
+  dampedY += (targetY - dampedY) * damp;
+  applyPlaneTransform(dampedX, dampedY);
+  if (!reducedMotion) {
+    for (let c = 0; c < window.driftTracks.length; c++) {
+      const meta = columnMeta[c];
+      if (!meta) continue;
+      const paused = wallHovered && true;
+      const factor = paused || hoveredCol === c ? 0 : 1;
+      const target = baseVels[c] * factor;
+      const ease = 1 - Math.exp(-dt / (target === 0 ? 0.16 : 0.28));
+      velocities[c] += (target - velocities[c]) * ease;
+      let next = (offsets[c] || 0) + velocities[c] * dt;
+      next = ((next % meta.copyHeight) + meta.copyHeight) % meta.copyHeight;
+      offsets[c] = next;
+      const el = window.driftTracks[c];
+      if (el) el.style.transform = `translate3d(0, ${-next}px, 0)`;
+    }
+  } else {
+    for (let c = 0; c < window.driftTracks.length; c++) {
+      const el = window.driftTracks[c];
+      const meta = columnMeta[c];
+      if (el && meta) el.style.transform = `translate3d(0, ${-(offsets[c] || 0)}px, 0)`;
+    }
+  }
+  rafId = driftVisible && !reducedMotion ? requestAnimationFrame(driftAnimate) : 0;
+}
+
+const driftResizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    containerHeight = entry.contentRect.height || 620;
+    updateColumnMeta();
+    if (window.driftTracks) {
+      offsets = columnMeta.map((meta, c) => {
+        const current = offsets[c] || 0;
+        return current % meta.copyHeight;
+      });
+    }
+  }
+});
+driftResizeObserver.observe(driftContainer);
+
+driftContainer.addEventListener('pointermove', (e) => {
+  const rect = driftContainer.getBoundingClientRect();
+  pointerX = (e.clientX - rect.left) / rect.width - 0.5;
+  pointerY = (e.clientY - rect.top) / rect.height - 0.5;
+  wallHovered = true;
+});
+driftContainer.addEventListener('pointerleave', () => {
+  wallHovered = false;
+  pointerX = 0;
+  pointerY = 0;
+  activeTileId = null;
+  hoveredCol = -1;
+  updateActiveTiles();
+});
+
+const motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+motionMQ.addEventListener('change', (e) => {
+  reducedMotion = e.matches;
+  if (!reducedMotion && driftVisible && !rafId) {
+    lastTs = null;
+    rafId = requestAnimationFrame(driftAnimate);
+  }
+});
+
+buildDriftWall();
+applyPlaneTransform(0, 0);
+rafId = requestAnimationFrame(driftAnimate);
+
+document.addEventListener('visibilitychange', () => {
+  driftVisible = document.visibilityState !== 'hidden';
+  if (driftVisible && !rafId && !reducedMotion) {
+    lastTs = null;
+    rafId = requestAnimationFrame(driftAnimate);
+  }
+});
+
+// ===== SANDY =====
+const sandyOverlay = document.getElementById('sandyOverlay');
+const sandyGallery = document.getElementById('sandyGallery');
+const sandyClose = document.getElementById('sandyClose');
+const sandyNumber = document.getElementById('sandyNumber');
+const sandyTitle = document.getElementById('sandyTitle');
+const sandyDesc = document.getElementById('sandyDesc');
+const sandyFocus = document.getElementById('sandyFocus');
+const sandyBenefits = document.getElementById('sandyBenefits');
+const sandySuitable = document.getElementById('sandySuitable');
+const sandyMeta = document.getElementById('sandyMeta');
+const sandyNavLabel = document.getElementById('sandyNavLabel');
+const sandyPrevBtn = document.getElementById('sandyPrevBtn');
+const sandyNextBtn = document.getElementById('sandyNextBtn');
+const sandyCta = document.getElementById('sandyCta');
+
+let sandySelectedIndex = 0;
+let isSandyOpen = false;
+let sandyRenderToken = 0;
+let sandyLastFocus = null;
+
+function buildSandyGallery(activeIndex) {
+  sandyGallery.innerHTML = '';
+  sandyGallery.className = 'sandy-gallery single-image';
+  if (window.innerWidth <= 520) {
+    sandyGallery.classList.add('sandy-gallery--vertical');
+  }
+  const p = programs[activeIndex];
+  const panel = document.createElement('div');
+  panel.className = 'sandy-panel is-active';
+  panel.dataset.index = activeIndex;
+  panel.setAttribute('aria-current', 'true');
+  panel.setAttribute('aria-label', p.title);
+  panel.innerHTML = `
+    <div class="sandy-panel-frame">
+      <div class="sandy-panel-media" style="--ag-gray: 0; --ag-dim: 0;">
+        <img src="${p.detailImage}" alt="${p.title}" draggable="false" loading="eager">
+      </div>
+      <div class="sandy-panel-overlay"></div>
+    </div>
+    <div class="sandy-panel-label">
+      <div class="sandy-panel-bar" style="opacity: 1;"></div>
+      <div class="sandy-panel-text" style="opacity: 1;">${p.number} ${p.title}</div>
+    </div>
+  `;
+  sandyGallery.appendChild(panel);
+}
+
+function updateSandyGallery(activeIndex) {
+  const panel = sandyGallery.querySelector('.sandy-panel');
+  const p = programs[activeIndex];
+  if (!panel || !p) return;
+  panel.dataset.index = activeIndex;
+  panel.setAttribute('aria-label', p.title);
+  const image = panel.querySelector('img');
+  const text = panel.querySelector('.sandy-panel-text');
+  if (image) {
+    image.src = p.detailImage;
+    image.alt = p.title;
+  }
+  if (text) text.textContent = `${p.number} ${p.title}`;
+}
+
+function renderSandyDetail(index) {
+  const p = programs[index];
+  if (!p) return;
+  const token = ++sandyRenderToken;
+  const content = document.getElementById('sandyContent');
+  content.style.opacity = '0';
+  content.style.transform = 'translateY(10px)';
+  setTimeout(() => {
+    if (token !== sandyRenderToken) return;
+    sandyNumber.textContent = p.number;
+    sandyTitle.textContent = p.title;
+    sandyDesc.textContent = p.desc;
+    sandyFocus.innerHTML = p.focus.map(f => `<li>${f}</li>`).join('');
+    sandyBenefits.innerHTML = p.benefits.map(b => `<li>${b}</li>`).join('');
+    sandySuitable.textContent = p.suitableFor;
+    sandyMeta.innerHTML = `Training style — <span>${p.trainingStyle}</span> &nbsp;·&nbsp; Intensity — <span>${p.intensity}</span>`;
+    sandyNavLabel.innerHTML = `${p.number} <span>—</span> ${p.title}`;
+    sandyCta.textContent = p.cta;
+    sandyCta.href = '#membership';
+    content.style.opacity = '1';
+    content.style.transform = 'translateY(0)';
+  }, 200);
+}
+
+function openProgramDetail(index) {
+  sandySelectedIndex = ((index % programs.length) + programs.length) % programs.length;
+  sandyLastFocus = document.activeElement;
+  sandyOverlay.classList.add('open');
+  sandyOverlay.setAttribute('aria-hidden', 'false');
+  sandyOverlay.removeAttribute('inert');
+  isSandyOpen = true;
+  document.body.style.overflow = 'hidden';
+  buildSandyGallery(sandySelectedIndex);
+  renderSandyDetail(sandySelectedIndex);
+  const closeBtn = sandyOverlay.querySelector('.sandy-close');
+  if (closeBtn) closeBtn.focus({preventScroll:true});
+  setTimeout(() => {
+    updateSandyGallery(sandySelectedIndex);
+  }, 100);
+}
+
+function closeProgramDetail() {
+  sandyOverlay.classList.remove('open');
+  sandyOverlay.setAttribute('aria-hidden', 'true');
+  sandyOverlay.setAttribute('inert', '');
+  isSandyOpen = false;
+  document.body.style.overflow = '';
+  if (sandyLastFocus && sandyLastFocus.focus) sandyLastFocus.focus({preventScroll:true});
+}
+
+function goToPrevious() {
+  sandySelectedIndex = ((sandySelectedIndex - 1) % programs.length + programs.length) % programs.length;
+  renderSandyDetail(sandySelectedIndex);
+  updateSandyGallery(sandySelectedIndex);
+}
+
+function goToNext() {
+  sandySelectedIndex = (sandySelectedIndex + 1) % programs.length;
+  renderSandyDetail(sandySelectedIndex);
+  updateSandyGallery(sandySelectedIndex);
+}
+
+sandyClose.addEventListener('click', closeProgramDetail);
+sandyOverlay.addEventListener('click', (e) => {
+  if (e.target === sandyOverlay) closeProgramDetail();
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    if(isSandyOpen){ e.preventDefault(); closeProgramDetail(); return; }
+  }
+  if(isSandyOpen){
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goToPrevious(); return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goToNext(); return; }
+    if (e.key === 'Tab'){
+      const focusable = sandyOverlay.querySelectorAll('button:not([disabled]),a[href],input,textarea,select,[tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  }
+});
+sandyPrevBtn.addEventListener('click', goToPrevious);
+sandyNextBtn.addEventListener('click', goToNext);
+
+window.addEventListener('resize', () => {
+  if (sandyGallery) {
+    if (window.innerWidth <= 520) {
+      sandyGallery.classList.add('sandy-gallery--vertical');
+    } else {
+      sandyGallery.classList.remove('sandy-gallery--vertical');
+    }
+    if (isSandyOpen) {
+      updateSandyGallery(sandySelectedIndex);
+    }
+  }
+});
+
+// ===== GYM ENQUIRY FORM =====
+(function() {
+  const form = document.getElementById('gymEnquiryForm');
+  if (!form) return;
+  const submitBtn = document.getElementById('submitEnquiry');
+  const formStatus = document.getElementById('formStatus');
+  const charCounter = document.getElementById('charCounter');
+  const messageInput = document.getElementById('enquiryMessage');
+  let isSubmitting = false;
+
+  if (messageInput && charCounter) {
+    messageInput.addEventListener('input', function() {
+      const len = this.value.length;
+      charCounter.textContent = len + ' / 500';
+      if (len > 450) charCounter.classList.add('warning');
+      else charCounter.classList.remove('warning');
+    });
+  }
+
+  function showStatus(type, message) {
+    if (!formStatus) return;
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+    if (!type || !message) return;
+    formStatus.className = 'form-status visible';
+    formStatus.classList.add('status-' + type);
+    formStatus.textContent = message;
+    if (type === 'success') {
+      setTimeout(() => {
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+      }, 8000);
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    const name = document.getElementById('enquiryName').value.trim();
+    const phone = document.getElementById('enquiryPhone').value.trim();
+    const email = document.getElementById('enquiryEmail').value.trim();
+    const fitnessGoal = document.getElementById('enquiryGoal').value;
+    const message = document.getElementById('enquiryMessage').value.trim();
+    const honeypot = form.querySelector('[name="website"]');
+    const honeypotValue = honeypot ? honeypot.value : '';
+    if (honeypotValue && honeypotValue.trim() !== '') {
+      showStatus('success', 'Thank you! Your enquiry has been sent.');
+      form.reset();
+      if (charCounter) charCounter.textContent = '0 / 500';
+      return;
+    }
+    const errors = [];
+    if (name.length < 2) errors.push('Please enter your full name.');
+    if (phone.length < 10 || !/^[0-9+\s\-()]{10,15}$/.test(phone)) errors.push('Please enter a valid phone number.');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Please enter a valid email address.');
+    if (!fitnessGoal || fitnessGoal === '') errors.push('Please select your fitness goal.');
+    if (message.length < 10) errors.push('Please enter a message (at least 10 characters).');
+    if (message.length > 500) errors.push('Message must be under 500 characters.');
+    if (errors.length > 0) {
+      showStatus('error', errors.join(' '));
+      return;
+    }
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    showStatus('info', 'Sending your enquiry...');
+    try {
+      const response = await fetch('/api/send-enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, fitnessGoal, message, website: honeypotValue })
+      });
+      const data = await response.json();
+      if (response.status === 200 && data.success) {
+        showStatus('success', 'Thank you! Your enquiry has been sent successfully. We\'ll contact you soon.');
+        form.reset();
+        if (charCounter) charCounter.textContent = '0 / 500';
+      } else if (response.status === 207 && data.success && data.partial) {
+        showStatus('warning', 'Your enquiry was received, but one notification channel could not be delivered. Please try again or contact us directly.');
+        form.reset();
+        if (charCounter) charCounter.textContent = '0 / 500';
+      } else {
+        showStatus('error', data.message || 'Unable to send your enquiry. Please try again or contact us directly.');
+      }
+    } catch (error) {
+      showStatus('error', 'Unable to send your enquiry right now. Please try again or contact us directly.');
+    } finally {
+      isSubmitting = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Enquiry';
+    }
+  });
+})();
+
+console.log('YUVA FIT & PHYSIQUE — Loaded successfully!');
+console.log('Programs loaded:', programs.length);
+</script>
+</body>
+</html>

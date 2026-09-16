@@ -1,0 +1,170 @@
+{
+  "project": {
+    "name": "YUVA Premium Fitness Photography Collection",
+    "brand": {
+      "name": "YUVA",
+      "type": "Luxury Gym Franchise",
+      "colors": {
+        "primary_black": "#050505",
+        "dark_surface": "#121212",
+        "accent_red": "#E50920",
+        "off_white": "#F5F2EC"
+      },
+      "style": "Premium commercial photography, cinematic, photorealistic, 8K quality",
+      "restrictions": ["no people", "no text", "no watermarks"]
+    }
+  },
+  "images": [
+    {
+      "id": "01",
+      "name": "STRENGTH ZONE",
+      "description": "Multiple black squat racks in a row with Olympic barbells, adjustable benches, wooden lifting platforms",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["squat racks", "Olympic barbells", "weight plates", "adjustable benches", "wooden lifting platforms"],
+      "composition": "Low cinematic camera angle looking through the racks",
+      "lighting": "Dark industrial interior with subtle red accent lighting",
+      "details": ["Black rubber flooring", "Photorealistic metal finishes"],
+      "prompt": "Professional gym strength training area, multiple black squat racks arranged in a row, Olympic barbells with weight plates, adjustable benches, wooden lifting platforms, shot from low cinematic camera angle looking through the racks creating dynamic depth, dark industrial interior with black rubber flooring with subtle reflections, subtle red accent lighting illuminating equipment edges, metallic weight plates with realistic reflections, photorealistic 8K quality, premium commercial photography, no people, no text"
+    },
+    {
+      "id": "02",
+      "name": "MACHINE ZONE",
+      "description": "Premium resistance machines including leg press, chest press, lat pulldown, seated row, cable crossover, shoulder press arranged in perfect rows",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["leg press", "chest press", "lat pulldown", "seated row", "cable crossover", "shoulder press"],
+      "composition": "Wide architectural perspective with geometric arrangement",
+      "lighting": "Dark flooring with metallic reflections and subtle red accent lighting",
+      "details": ["Perfect rows arrangement", "Metallic finishes"],
+      "prompt": "Luxury fitness facility machine area, premium resistance machines including leg press, chest press, lat pulldown, seated row, cable crossover, shoulder press arranged in perfect geometric rows, wide architectural perspective, dark polished flooring with metallic reflections, sophisticated gym environment, subtle red accent lighting creating visual hierarchy, 8K photorealistic quality, premium gym design, professional commercial photography, no people, no text"
+    },
+    {
+      "id": "03",
+      "name": "CARDIO ZONE",
+      "description": "Sleek black treadmills, elliptical machines, stationary bikes, rowing machine with large windows and early morning golden light",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["treadmills", "elliptical machines", "stationary bikes", "rowing machine"],
+      "composition": "Large floor-to-ceiling windows with natural and accent lighting",
+      "lighting": "Early morning golden light mixed with red accents",
+      "details": ["Clean spacious minimalist interior"],
+      "prompt": "Premium cardio equipment zone, sleek black treadmills, elliptical machines, stationary bikes, rowing machine, large floor-to-ceiling windows, early morning golden light mixed with red accent lighting, clean spacious minimalist interior, professional gym design, dark surfaces with sophisticated lighting, 8K photorealistic commercial photography, luxury fitness facility, no people, no text, no watermarks"
+    },
+    {
+      "id": "04",
+      "name": "FUNCTIONAL TRAINING",
+      "description": "Black kettlebells, battle ropes, weighted sled, functional trainer, medicine balls, plyometric boxes, large black metal training rig",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["kettlebells", "battle ropes", "weighted sled", "functional trainer", "medicine balls", "plyometric boxes", "training rig"],
+      "composition": "Dynamic clean composition with strong visual hierarchy",
+      "lighting": "Dark sophisticated environment with subtle red lighting accents",
+      "details": ["Black rubber flooring", "Large black metal rig structure"],
+      "prompt": "Functional training zone, black kettlebells with realistic metal finish, battle ropes, weighted sled, functional trainer machine, medicine balls, plyometric boxes, large black metal training rig structure, black rubber flooring, dynamic clean composition with strong visual hierarchy, industrial gym aesthetic, dark sophisticated environment, subtle red lighting accents, 8K photorealistic quality, premium commercial photography, no people, no text"
+    },
+    {
+      "id": "05",
+      "name": "FREE WEIGHTS",
+      "description": "Large organized dumbbell rack stretching into distance, adjustable benches, weight plates, barbells, low angle composition",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["dumbbell rack", "adjustable benches", "weight plates", "barbells"],
+      "composition": "Low angle along the rack creating strong depth perspective",
+      "lighting": "Dark interior with subtle red accent lighting",
+      "details": ["Black dumbbells with polished silver handles", "Strong linear perspective"],
+      "prompt": "Luxury dumbbell section, large organized premium dumbbell rack stretching into distance with perfect depth perspective, adjustable benches, weight plates, barbells, low angle shot along the rack creating strong linear perspective and depth, black dumbbells with polished silver handles, dark industrial interior, sophisticated lighting with subtle red accents, 8K photorealistic, professional gym architecture, premium commercial photography, no people, no text"
+    },
+    {
+      "id": "06",
+      "name": "PREMIUM INTERIOR",
+      "description": "Wide cinematic architectural photograph of entire gym showing all zones: strength, cardio, machines, free weights, functional areas",
+      "aspect_ratio": "16:9",
+      "resolution": "3840x2160px",
+      "primary_zones": ["strength area", "cardio section", "machine zone", "free weights", "functional training"],
+      "composition": "Aerial view showing entire facility layout with large open floor plan",
+      "lighting": "High ceiling with industrial exposed ductwork, subtle red accent lighting creating premium atmosphere",
+      "details": ["Polished dark flooring", "Sophisticated layout design"],
+      "prompt": "Cinematic wide architectural photograph of entire premium gym facility, aerial view showing strength area, cardio section, machine zone, free weights area, functional training space, large open floor plan, high ceiling with industrial exposed ductwork, polished dark flooring, sophisticated layout design, dark environment with subtle red accent lighting creating premium atmosphere, 8K photorealistic commercial photography, luxury fitness facility, professional architecture, no people, no text"
+    },
+    {
+      "id": "07",
+      "name": "PERFORMANCE TRAINING",
+      "description": "Artificial green turf lane, weighted sled, battle ropes, squat racks, plyometric boxes, functional rig with strong perspective down turf lane",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["turf lane", "weighted sled", "battle ropes", "squat racks", "plyometric boxes", "functional rig"],
+      "composition": "Strong perspective down the turf lane creating depth",
+      "lighting": "Dark premium environment with strategic red lighting accents",
+      "details": ["Artificial green turf", "Professional sports training aesthetic"],
+      "prompt": "Performance training zone, artificial turf training lane, weighted sled, battle ropes, squat racks, plyometric boxes, functional rig, strong perspective down the turf lane creating depth, dark premium environment with strategic red lighting accents, professional sports training facility aesthetic, black rubber flooring, sophisticated industrial design, 8K photorealistic quality, premium commercial photography, no people, no text"
+    },
+    {
+      "id": "08",
+      "name": "EQUIPMENT DETAIL",
+      "description": "Extreme close-up of black metal squat rack frame, weight plates, knurled Olympic barbell, machine cables",
+      "aspect_ratio": "16:9",
+      "resolution": "3840x2160px",
+      "primary_focus": ["squat rack frame", "weight plates", "Olympic barbell", "machine cables"],
+      "composition": "Extreme macro close-up with dramatic side-lighting",
+      "lighting": "Dramatic side-lighting creating dimensional shadows with red accent background",
+      "details": ["Realistic metal texture with scratches", "Professional macro photography"],
+      "prompt": "Extreme macro close-up shot, black metal squat rack frame with realistic texture, weight plates with detailed surface, knurled Olympic barbell with authentic texture, machine cables with mechanical detail, dramatic side-lighting creating dimensional shadows, realistic metal texture showing scratches and reflections, dark blurred background with red accent lighting, professional macro photography, 8K photorealistic detail, premium commercial product photography, cinematic lighting, no people, no text"
+    },
+    {
+      "id": "09",
+      "name": "CABLE MACHINES",
+      "description": "Dual adjustable pulley, cable crossover, lat pulldown, functional trainer, weight stacks with diagonal camera position",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["adjustable pulley", "cable crossover", "lat pulldown", "functional trainer", "weight stacks"],
+      "composition": "Diagonal camera position creating geometric lines and architectural depth",
+      "lighting": "Red accent lighting on metal surfaces and dark flooring",
+      "details": ["Metallic reflections on polished flooring"],
+      "prompt": "Cable machine zone, dual adjustable pulley system, cable crossover machine, lat pulldown, functional trainer, weight stacks visible, diagonal camera position creating geometric lines and architectural depth, metallic reflections on polished dark flooring, sophisticated equipment arrangement, red accent lighting on metal surfaces, dark premium interior, 8K photorealistic, professional gym photography, luxury fitness design, no people, no text"
+    },
+    {
+      "id": "10",
+      "name": "LOWER BODY ZONE",
+      "description": "Leg press machine as hero, hack squat, leg extension, leg curl, squat rack in background with low-angle composition",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["leg press", "hack squat", "leg extension", "leg curl", "squat rack"],
+      "composition": "Low-angle composition emphasizing equipment scale",
+      "lighting": "Dark environment with controlled red highlights on equipment edges",
+      "details": ["Realistic metallic finish on machines", "Professional gym design"],
+      "prompt": "Lower body training area, leg press machine as hero focal point, hack squat machine, leg extension, leg curl machine, squat rack in background creating depth, low-angle composition emphasizing equipment scale, dark environment with controlled red highlights on equipment edges and details, realistic metallic finish on machines, professional gym design, 8K photorealistic quality, premium commercial photography, sophisticated lighting, no people, no text"
+    },
+    {
+      "id": "11",
+      "name": "GROUP STUDIO",
+      "description": "Exercise mats lined up, dumbbells and kettlebells on rack, resistance bands, functional equipment, large mirrors",
+      "aspect_ratio": "3:4",
+      "resolution": "2160x2880px",
+      "primary_equipment": ["exercise mats", "dumbbells", "kettlebells", "resistance bands", "functional equipment"],
+      "composition": "Organized rows with mirrors reflecting interior",
+      "lighting": "Modern overhead lighting system with subtle red accents",
+      "details": ["Spacious minimalist studio interior", "Dark polished flooring"],
+      "prompt": "Premium HIIT and group workout studio, exercise mats lined up in organized rows, dumbbells and kettlebells on professional rack, resistance bands, functional equipment arranged for group training, large mirrors reflecting sophisticated interior, modern overhead lighting system, spacious minimalist studio interior, dark polished flooring with subtle red accents, professional group fitness environment, 8K photorealistic, luxury gym facility, premium commercial photography, no people, no text"
+    },
+    {
+      "id": "12",
+      "name": "FLAGSHIP HERO SHOT",
+      "description": "Most impressive huge premium fitness facility with all zones: strength, free weights, machines, cardio, functional, performance area with turf",
+      "aspect_ratio": "16:9",
+      "resolution": "3840x2160px",
+      "all_zones": ["strength equipment", "free weights", "machines", "cardio", "functional training", "performance turf area"],
+      "composition": "Dramatic wide-angle architectural composition with sophisticated layered depth",
+      "lighting": "Dark black environment with subtle red lighting accents throughout, metallic reflections",
+      "details": ["Strong cinematic atmosphere", "Professional architectural photography"],
+      "prompt": "Most impressive flagship premium fitness facility wide-angle architectural shot, showcasing strength equipment, free weights section, machine zone, cardio area, functional training zone, performance turf area, dramatic wide-angle composition, sophisticated layered depth from foreground to background, dark black environment with subtle red lighting accents throughout, metallic equipment reflecting ambient lighting, strong cinematic atmosphere, professional architectural photography, 8K photorealistic quality, luxury brand presentation, premium commercial photography, no people, no text, no watermarks"
+    }
+  ],
+  "export_date": "2026-09-09",
+  "total_images": 12,
+  "recommended_tools": [
+    "Midjourney (best for cinematic quality)",
+    "DALL-E 3 (good for architectural shots)",
+    "Stable Diffusion XL (alternative option)"
+  ]
+}

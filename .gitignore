@@ -1,0 +1,23 @@
+# Environment files — never commit Telegram/WhatsApp credentials
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# Local override files
+.env.*
+
+# Node modules
+node_modules/
+
+# Test artifacts
+tests/_clean-out.txt
+tests/_clean-tmp2.js
+tests/_list-out2.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

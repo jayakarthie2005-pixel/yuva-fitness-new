@@ -1,0 +1,16 @@
+{
+  "name": "yuva-fitness-website",
+  "version": "1.0.0",
+  "description": "YUVA FIT & PHYSIQUE - Gym Enquiry System",
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "test:browser": "node tests/browser-tests.js",
+    "test:load": "node tests/load-test.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

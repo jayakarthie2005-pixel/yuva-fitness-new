@@ -1,0 +1,234 @@
+RATE-LIMITER PRODUCTION REVIEW — YUVA FITNESS WEBSITE
+=========================================================
+Date:      Fri Sep 11 2026
+Scope:     Rate-limiting implementation ONLY
+           (no design/UI changes made, per instruction)
+
+=====================================================================
+  1. EXACT CURRENT IMPLEMENTATION (inspected source)
+=====================================================================
+
+Both API handlers (api/send-enquiry.js and api/send-franchise-enquiry.js)
+carry an IDENTICAL in-memory rate limiter:
+
+  - A module-level Map:          const rateHits = new Map();
+  - Key:                         client IP
+  - Sliding window:              60,000 ms (60 s)
+  - Limit:                       5 requests per IP per window (RATE_MAX=5)
+  - IP extraction:               req.headers['x-forwarded-for']
+                                   .split(',')[0]  →  x-real-ip  → 'unknown'
+  - Cleanup:                     when Map exceeds 20,000 keys, entries whose
+                                 oldest/only hit is >60 s old are deleted
+  - Placement:                   checked BEFORE validation, honeypot, env
+                                 check — every POST consumes the budget
+  - Exempt:                      OPTIONS (204) and non-POST methods (405)
+
+KEY FACT: each handler file has its OWN Map. There are TWO independent
+limiter stores (one per endpoint), and they share NO state with anything
+else — no database, no cache, no external store.
+
+=====================================================================
+  2. RELIABILITY ACROSS MULTIPLE VERCEL SERVERLESS INSTANCES
+=====================================================================
+
+VERDICT: The in-memory limiter does NOT provide global rate limiting.
+It is per-process, per-instance state. This is expected behaviour for
+serverless and is the reason the implementation must be classified as
+"best-effort backstop", not global enforcement.
+
+Why:
+
+  - Vercel runs each serverless function in isolated containers/processes.
+    Vercel auto-scales: under load, multiple instances of the same
+    endpoint run simultaneously, each with its OWN `rateHits` Map.
+  - A single IP's requests are load-balanced (round-robin / least-loaded)
+    across those instances. Each instance remembers only the requests
+    IT handled.
+  - Concrete example: 3 warm instances of /api/send-enquiry receive 12
+    requests from the SAME IP in 60 s, distributed 4 / 4 / 4. Each
+    instance sees 4 (< 5) → all 12 pass. No 429 fires.
+  - Instance lifecycle: when an instance is recycled (idle ~60 s on
+    hobby, or after MaxDuration), its Map is thrown away entirely.
+  - In production the effective floor is roughly:
+        5 × (number of concurrently warm instances)
+    for a single endpoint, and DOUBLED if the bot alternates between the
+    two endpoints (two separate Maps).
+
+Result: the limiter is MORE lenient in production than in single-
+instance testing — never stricter. Bots can exceed 5/min/IP once
+multiple instances are warm.
+
+Is that a real problem for THIS site?
+  - The limiter is a backstop, not the primary defence.
+  - Primary spam defences (verified working):
+        (a) hidden honeypot field  → naive bots get a fake 200, no work
+        (b) frontend double-submit guard → button disabled + isSubmitting
+        (c) strict server-side validation  → junk payloads get 400
+  - Worst realistic bypass outcome: a handful of extra Telegram/WhatsApp
+    messages. No data exposure, no cost blow-up, no downtime.
+  - At YUVA's expected traffic (tens of enquiries/day, spikes of a few
+    hundred), 1–2 warm instances is typical → practical cap is still
+    ~5–10/min/IP. Adequate.
+
+=====================================================================
+  3. SHARED-IP FALSE POSITIVES (NAT / CGNAT analysis)
+=====================================================================
+
+The limiter keys on ONE external IP. Multiple real users behind a shared
+IP are throttled as a single identity. Analysis per scenario:
+
+  ┌──────────────────────┬───────────────┬───────────────────────────┐
+  │ Network              │ Users behind  │ Can 6+ legit submissions  │
+  │                      │ one public IP │ land within 60 s?         │
+  ├──────────────────────┼───────────────┼───────────────────────────┤
+  │ Home / family Wi-Fi  │ 1–6           │ Rare (family of 5 all     │
+  │                      │               │ submit same minute).      │
+  │ College Wi-Fi        │ 100s–1000s    │ Possible during a campus  │
+  │                      │ (CGNAT)       │ drive/promotion.          │
+  │ Gym Wi-Fi            │ 50–200        │ Possible during an        │
+  │                      │               │ in-person promo.          │
+  │ Office Wi-Fi         │ 10s–100s      │ Possible at a team level. │
+  │ Carrier NAT (India)  │ 1000s         │ Likeliest: Jio/Airtel/Vi  │
+  │  Jio / Airtel / Vi   │ (CGNAT pool)  │ share small IP pools; two │
+  │                      │               │ nearby users can collide.│
+  └──────────────────────┴───────────────┴───────────────────────────┘
+
+Likelihood of harm: LOW–MODERATE.
+
+  - The 429 response is RECOVERABLE, not a hard block:
+    "Too many submissions from this device. Please wait a moment and
+    try again." — frontend shows this in the aria-live status box,
+    the user can retry after 60 s.
+  - A gym enquiry is a ONE-TIME action. 6+ distinct people hitting the
+    SAME endpoint from ONE public IP within the same 60-second window
+    is uncommon in normal operation; it only becomes plausible during
+    a promotion where many visitors submit at once from shared Wi-Fi.
+  - The two endpoints have independent quotas, so a user submitting a
+    gym enquiry AND a franchise enquiry within a minute is NOT blocked.
+  - The limiter is MORE permissive per instance in production, further
+    reducing false-positive risk versus my single-instance test numbers.
+
+IP-extraction notes (audit findings, not changed):
+  - Trusts x-forwarded-for first value. Vercel sets this safely at the
+    edge; a client-sent XFF is not trusted for the real client IP on
+    Vercel's proxy. Acceptable for this threat model.
+  - If neither XFF nor x-real-ip is present, all such requests share the
+    literal key "unknown" and throttle each other. On Vercel, XFF is
+    always present, so this branch is unreachable in production.
+
+=====================================================================
+  4. DECISION & JUSTIFICATION
+=====================================================================
+
+VERDICT: LEAVE THE IMPLEMENTATION UNCHANGED.
+
+The current in-memory limiter is ACCEPTABLE as a best-effort backstop
+for the site's expected traffic (a local gym; tens of enquiries/day).
+Reasons:
+
+  1. It is not the primary defence. Honeypot + frontend guard + server
+     validation already stop the overwhelming majority of abuse.
+  2. Being per-instance makes it MORE lenient, which favours legitimate
+     users (automatic protection against shared-IP false positives).
+  3. Worst-case bypass = extra Telegram/WhatsApp chatter. No data loss,
+     no security exposure, no monetary risk (recipient-side messages).
+  4. Adding a distributed store (Vercel KV/Redis) costs money, adds a
+     dependency, and adds ~10–30 ms latency per request — unjustified
+     at this traffic volume per the constraint to add nothing unless
+     actually necessary.
+  5. No database was added. No service was installed. No UI/design changed.
+
+=====================================================================
+  5. WHAT TO DO IF THIS EVER STOPS BEING SUFFICIENT
+=====================================================================
+
+Adopt these if/when spam becomes visible, or traffic grows 10–100x:
+
+  1. Service/storage:
+     Vercel KV (Upstash Redis) + `@upstash/ratelimit`, or the raw
+     `@vercel/kv` / `@upstash/redis` client. This is the simplest
+     globally-consistent store that exists inside the current Vercel
+     account — no new platform.
+  2. Why required:
+     Redis gives a single atomic counter shared by every serverless
+     instance, restoring TRUE global limiting (5/min/IP regardless of
+     how many instances are warm).
+  3. Expected cost/complexity:
+     Free tier ≈ 30k requests/day (10k–30k reads/day on Upstash
+     free tier); beyond that ~$0.25 per 10k. Implementation is one
+     shared module (~30 lines) plus a lookup per request. Keep an
+     in-memory fallback so a KV outage never breaks form submission.
+  4. Expected behaviour:
+     Each POST does an atomic `INCR` on a Redis key
+     `rl:<endpoint>:<ip>:<epoch-window>`; if count > 5 for the window →
+     429. Expire keys with TTL 60 s so Redis self-cleans. Same sliding-
+     window semantics as today, just shared globally.
+  5. Legitimate shared-IP users:
+       - Extract IP from Vercel's canonical header
+         (`x-vercel-forwarded-for`) used by the edge.
+       - Consider keying on a fingerprint of `IP + User-Agent` to split
+         distinct devices behind one NAT while still throttling bots.
+       - OR raise the window limit (e.g., 10–20/min) to absorb campus /
+         carrier bursts while remaining comfortable vs. form abuse.
+       - Keep the friendly, retryable 429 message and expose `Retry-After:
+         60` so conformant clients wait instead of hammering.
+
+  Deliberately NOT recommended:
+       - Vercel Edge Config (eventual consistency + slow writes, wrong
+         tool for counters).
+       - Vercel Firewall built-in rate limiting (Enterprise plan only —
+         out of scope/budget).
+       - A full database such as Postgres/Supabase purely for counters
+         (overkill; violates the no-database constraint).
+
+=====================================================================
+  6. VERIFICATION (run fresh on 2026-09-11, no code changes made)
+=====================================================================
+
+  ┌─────────────────────────────┬────────────────────────────────────┐
+  │ Suite                       │ Result                            │
+  ├─────────────────────────────┼────────────────────────────────────┤
+  │ npm test                    │ 127/127 PASS, 0 FAIL               │
+  │ npm run test:browser        │ 167/167 PASS, 0 FAIL               │
+  │ npm run test:load           │ 28/28  PASS, 0 FAIL               │
+  └─────────────────────────────┴────────────────────────────────────┘
+
+  Rate-limiter-specific checks (from test:load, this run):
+    - 429 behaviour:  7 same-IP seq  → 5×200 + 2×429  ✓ exact 5/min
+                      25 same-IP burst → 5×200 + 20×429 ✓
+                      8 rapid same-IP  → 5×200 + 3×429  ✓
+    - Legitimate form submissions: 10/25/50/100 unique users →
+      all 200, zero 429/400/500 ✓
+    - Double-submit protection: frontend guard (browser suite) + API
+      backstop (429 at 6th request) ✓
+    - No user-data cross-talk: 100 concurrent unique submissions,
+      100% data isolation, zero race conditions ✓
+
+  LIMITATION OF TESTS (honest): all local, single-process. They prove
+  single-instance behaviour exactly. They CANNOT reproduce multi-
+  instance Vercel scaling locally; cross-instance leniency is reasoned
+  from platform architecture, not empirically measured here.
+
+=====================================================================
+  7. FINAL SUMMARY
+=====================================================================
+
+  Is the limiter globally distributed?       NO — per-instance state.
+  Is that a problem at expected traffic?      NO — best-effort backstop,
+                                              primary defence is the
+                                              honeypot + frontend guard.
+  Can 5/min/IP false-block shared IPs?        In theory yes; in practice
+                                              recoverable (retry) and
+                                              made less likely by the
+                                              per-instance leniency.
+  Code changed in this review?                NONE (per instruction:
+                                              leave acceptable code
+                                              unchanged).
+  Database / service added?                   NONE.
+  Upgrade path if needed?                     Vercel KV / @upstash/
+                                              ratelimit with in-memory
+                                              fallback (see §5).
+
+  BOTTOM LINE: Current implementation is acceptable for expected
+  traffic. No change made. Distributed limiting documented, not
+  claimed, and not implemented.
