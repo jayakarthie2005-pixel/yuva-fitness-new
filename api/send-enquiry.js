@@ -15,9 +15,12 @@ const validateEnv = () => {
   const missing = [];
   if (!TELEGRAM_BOT_TOKEN) missing.push('TELEGRAM_BOT_TOKEN');
   if (!TELEGRAM_CHAT_ID) missing.push('TELEGRAM_CHAT_ID');
-  if (!WHATSAPP_ACCESS_TOKEN) missing.push('WHATSAPP_ACCESS_TOKEN');
-  if (!WHATSAPP_PHONE_NUMBER_ID) missing.push('WHATSAPP_PHONE_NUMBER_ID');
-  if (!WHATSAPP_RECIPIENT_NUMBER) missing.push('WHATSAPP_RECIPIENT_NUMBER');
+
+  // WhatsApp Cloud API is OPTIONAL. If its credentials are absent, delivery
+  // is simply skipped — Telegram still works and the handler still responds.
+  if (!WHATSAPP_ACCESS_TOKEN) console.warn('WHATSAPP_ACCESS_TOKEN not set; WhatsApp delivery skipped.');
+  if (!WHATSAPP_PHONE_NUMBER_ID) console.warn('WHATSAPP_PHONE_NUMBER_ID not set; WhatsApp delivery skipped.');
+  if (!WHATSAPP_RECIPIENT_NUMBER) console.warn('WHATSAPP_RECIPIENT_NUMBER not set; WhatsApp delivery skipped.');
 
   if (missing.length > 0) {
     console.error('Missing environment variables:', missing.join(', '));
@@ -224,10 +227,16 @@ module.exports = async function handler(req, res) {
 
     const results = { telegram: false, whatsapp: false };
 
-    await Promise.allSettled([
+    const outbound = [
       sendToTelegram(name, phone, email, fitnessGoal, message).then(() => { results.telegram = true; }),
-      sendToWhatsApp(name, phone, email, fitnessGoal, message).then(() => { results.whatsapp = true; }),
-    ]);
+    ];
+
+    // WhatsApp is optional — only attempt delivery if all credentials are present.
+    if (WHATSAPP_ACCESS_TOKEN && WHATSAPP_PHONE_NUMBER_ID && WHATSAPP_RECIPIENT_NUMBER) {
+      outbound.push(sendToWhatsApp(name, phone, email, fitnessGoal, message).then(() => { results.whatsapp = true; }));
+    }
+
+    await Promise.allSettled(outbound);
 
     if (results.telegram && results.whatsapp) {
       return res.status(200).json({
