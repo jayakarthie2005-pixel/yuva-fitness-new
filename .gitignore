@@ -21,3 +21,5 @@ tests/_list-out2.txt
 .DS_Store
 Thumbs.db
 *.swp
+.vercel
+.env*

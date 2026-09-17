@@ -1315,7 +1315,37 @@ document.addEventListener('keydown', (e)=>{
           if (err) err.classList.add('hidden');
           var who = name ? name.value.trim() : 'Applicant';
           var where = city ? city.value.trim() : '';
-          showToast('Franchise Enquiry Received', 'Thanks ' + who + (where ? ' (' + where + ')' : '') + '. Our team will contact you with next steps.');
+
+          // Submit to the franchise enquiry API so Telegram (and WhatsApp, if
+          // configured) receives the enquiry. Mirrors the Home enquiry form.
+          var payload = JSON.stringify({
+            fullName: name.value.trim(),
+            phone: phone.value.trim(),
+            email: email.value.trim(),
+            city: city.value.trim(),
+            area: area.value.trim(),
+            budget: budget.value,
+            space: space.value,
+            property: property.value,
+            timeline: timeline.value,
+            message: (document.getElementById('fq-message') ? document.getElementById('fq-message').value : '').trim(),
+            website: ''
+          });
+          fetch('/api/send-franchise-enquiry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload
+          }).then(function (response) { return response.json().then(function (data) { return { status: response.status, data: data }; }); })
+            .then(function (result) {
+              if (result.status === 200 || result.status === 207) {
+                showToast('Franchise Enquiry Received', 'Thanks ' + who + (where ? ' (' + where + ')' : '') + '. Our team will contact you with next steps.');
+              } else {
+                showToast('Submission Issue', (result.data && result.data.message) ? result.data.message : 'Unable to send. Please try again or contact us directly.');
+              }
+            })
+            .catch(function () {
+              showToast('Network Error', 'Unable to send your franchise enquiry. Please check your connection and try again.');
+            });
           form.reset();
           var target = document.getElementById('toast-notify');
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

@@ -1,5 +1,12 @@
 {
   "version": 2,
+  "redirects": [
+    {
+      "source": "/franchise",
+      "destination": "/franchise/gallery.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
