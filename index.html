@@ -2096,7 +2096,7 @@ window.addEventListener('resize', () => {
         form.reset();
         if (charCounter) charCounter.textContent = '0 / 500';
       } else if (response.status === 207 && data.success && data.partial) {
-        showStatus('warning', 'Your enquiry was received, but one notification channel could not be delivered. Please try again or contact us directly.');
+        showStatus('success', 'Your enquiry has been received successfully. We\'ll get back to you soon.');
         form.reset();
         if (charCounter) charCounter.textContent = '0 / 500';
       } else {
