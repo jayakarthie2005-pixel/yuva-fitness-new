@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const FRANCHISE_TELEGRAM_BOT_TOKEN = process.env.FRANCHISE_TELEGRAM_BOT_TOKEN;
+const FRANCHISE_TELEGRAM_CHAT_ID = process.env.FRANCHISE_TELEGRAM_CHAT_ID;
 const WHATSAPP_ACCESS_TOKEN = process.env.WHATSAPP_ACCESS_TOKEN;
 const WHATSAPP_PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 const WHATSAPP_RECIPIENT_NUMBER = process.env.WHATSAPP_RECIPIENT_NUMBER;
@@ -13,8 +13,8 @@ const rateHits = new Map();
 
 const validateEnv = () => {
   const missing = [];
-  if (!TELEGRAM_BOT_TOKEN) missing.push('TELEGRAM_BOT_TOKEN');
-  if (!TELEGRAM_CHAT_ID) missing.push('TELEGRAM_CHAT_ID');
+  if (!FRANCHISE_TELEGRAM_BOT_TOKEN) missing.push('FRANCHISE_TELEGRAM_BOT_TOKEN');
+  if (!FRANCHISE_TELEGRAM_CHAT_ID) missing.push('FRANCHISE_TELEGRAM_CHAT_ID');
 
   // WhatsApp Cloud API is OPTIONAL. If its credentials are absent, delivery
   // is simply skipped — Telegram still works and the handler still responds.
@@ -79,11 +79,11 @@ Submitted from: Franchise Enquiry — YUVA Website
   `.trim();
 
   const response = await fetchWithTimeout(
-    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+    `https://api.telegram.org/bot${FRANCHISE_TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML', disable_web_page_preview: true }),
+      body: JSON.stringify({ chat_id: FRANCHISE_TELEGRAM_CHAT_ID, text, parse_mode: 'HTML', disable_web_page_preview: true }),
     },
     OUTBOUND_TIMEOUT_MS
   );
