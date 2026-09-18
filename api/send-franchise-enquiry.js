@@ -198,10 +198,10 @@ module.exports = async function handler(req, res) {
     if (!timeline) errors.push('Expected Opening Timeline is required.');
     if (message.length > 800) errors.push('Message must be under 800 characters.');
 
-    const validBudgets = ['₹25–50 Lakhs', '₹50 Lakhs–₹1 Crore', '₹1–2 Crore', '₹2 Crore+', 'Not Decided'];
-    const validSpaces = ['Below 2,000 sq.ft', '2,000–3,000 sq.ft', '3,000–5,000 sq.ft', '5,000+ sq.ft', 'Not Decided'];
-    const validProperties = ['Own Property', 'Rented / Lease Property', 'Looking for Property'];
-    const validTimelines = ['Within 3 Months', '3–6 Months', '6–12 Months', '12+ Months', 'Not Decided'];
+    const validBudgets = ['25-40L', '40-60L', '60L-1Cr', '1Cr+'];
+    const validSpaces = ['2000-3500', '3500-5000', '5000-8500', '8500+'];
+    const validProperties = ['owned', 'leased', 'looking'];
+    const validTimelines = ['immediate', '1-3', '3-6', '6+'];
     if (budget && !validBudgets.includes(budget)) errors.push('Invalid budget.');
     if (space && !validSpaces.includes(space)) errors.push('Invalid space.');
     if (property && !validProperties.includes(property)) errors.push('Invalid property status.');
