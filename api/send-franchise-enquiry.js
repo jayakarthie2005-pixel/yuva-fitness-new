@@ -207,7 +207,10 @@ module.exports = async function handler(req, res) {
     if (property && !validProperties.includes(property)) errors.push('Invalid property status.');
     if (timeline && !validTimelines.includes(timeline)) errors.push('Invalid timeline.');
 
-    if (errors.length) return res.status(400).json({ success: false, errors });
+    if (errors.length) {
+    console.warn('FRANCHISE_VALIDATION_ERRORS:', errors);
+    return res.status(400).json({ success: false, errors });
+  }
 
     const data = { fullName, phone, email, city, area, budget, space, property, timeline, message };
     const results = { telegram: false, whatsapp: false };
