@@ -89,7 +89,13 @@ Submitted from: Franchise Enquiry — YUVA Website
   );
   if (!response.ok) {
     const err = await response.json().catch(() => ({}));
-    throw new Error(`Telegram API error: ${JSON.stringify(err)}`);
+    const safe = new Error('Telegram API error');
+    safe.name = 'TelegramHttpError';
+    safe.httpStatus = response.status;
+    safe.telegramDescription = err && err.description ? err.description : '';
+    safe.telegramErrorCode = err && err.error_code ? err.error_code : '';
+    console.error('TELEGRAM_DELIVERY_ERROR: status=' + response.status + ' description=' + JSON.stringify(safe.telegramDescription) + ' errorCode=' + safe.telegramErrorCode);
+    throw safe;
   }
   return response.json();
 }
@@ -227,8 +233,11 @@ module.exports = async function handler(req, res) {
     if (results.telegram || results.whatsapp) return res.status(207).json({ success: true, partial: true, message: 'Enquiry received, one channel pending.' });
     return res.status(502).json({ success: false, message: 'Unable to send. Please try again or contact us directly.' });
   } catch (error) {
-    const reason = error && error.name === 'AbortError' ? 'notification service timed out' : error.message;
-    console.error('Franchise handler error:', reason);
+    const safeName = error && error.name ? error.name : 'UnknownError';
+    const safeStatus = error && error.httpStatus ? String(error.httpStatus) : '';
+    const safeDesc = error && error.telegramDescription ? String(error.telegramDescription) : (error && error.message ? String(error.message) : '');
+    const safeDetail = safeStatus ? (' status=' + safeStatus + ' description=' + JSON.stringify(safeDesc)) : (' message=' + JSON.stringify(safeDesc));
+    console.error('FRANCHISE_HANDLER_ERROR: name=' + safeName + safeDetail);
     return res.status(500).json({ success: false, message: 'Unable to send. Please try again.' });
   }
 };
