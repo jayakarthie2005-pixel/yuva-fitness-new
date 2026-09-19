@@ -156,6 +156,9 @@ check('gallery: pointer:coarse input fix', html.gallery.includes('pointer: coars
 const validEnv = {
   TELEGRAM_BOT_TOKEN: '123:TEST_TOKEN',
   TELEGRAM_CHAT_ID: '123456',
+  // Franchise handler uses its own prefixed env vars (separate bot/chat).
+  FRANCHISE_TELEGRAM_BOT_TOKEN: '123:FRANCHISE_TEST_TOKEN',
+  FRANCHISE_TELEGRAM_CHAT_ID: '123456',
   WHATSAPP_ACCESS_TOKEN: 'test_wa_token',
   WHATSAPP_PHONE_NUMBER_ID: '1234567890',
   WHATSAPP_RECIPIENT_NUMBER: '917000000000',
@@ -256,8 +259,8 @@ section('2. API handler unit tests');
     fetchCalls = [];
     const frData = {
       fullName: 'Ravi Kumar', phone: '+91 9876543210', email: 'ravi@example.com',
-      city: 'Chennai', area: 'Velachery', budget: '₹25–50 Lakhs', space: '2,000–3,000 sq.ft',
-      property: 'Rented / Lease Property', timeline: '6–12 Months', message: 'Interested in franchise.'
+      city: 'Chennai', area: 'Velachery', budget: '25-40L', space: '2000-3500',
+      property: 'owned', timeline: '1-3', message: 'Interested in franchise.'
     };
     r = await callHandler(sendFranchise, frData);
     check('franchise: valid → 200', r._code === 200, String(r._code));
@@ -303,7 +306,7 @@ function runApiConcurrency() {
         name: 'Conc User', phone: '+91 9876543210', email: 'conc@example.com', fitnessGoal: 'Other', message: 'A valid enquiry message here.'
       }], ['franchise', sendFranchise, {
         fullName: 'Conc Franchise', phone: '+91 9876543210', email: 'conc@example.com', city: 'Mumbai', area: 'Bandra',
-        budget: '₹1–2 Crore', space: '5,000+ sq.ft', property: 'Own Property', timeline: '12+ Months'
+        budget: '60L-1Cr', space: '3500-5000', property: 'owned', timeline: '3-6'
       }]]) {
         const results = { total: 0, ok: 0, rateLimited: 0, badRequest: 0, error: 0 };
         const batches = [10, 25, 50, 100];
