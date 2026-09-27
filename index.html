@@ -1221,6 +1221,37 @@ box-shadow: 0 0 0 3px rgba(229,9,32,0.5), 0 6px 20px rgba(0,0,0,0.35);
     .hero-scroll-cue{opacity:1;}
     .nav-wrap{transition:none;}
   }
+
+  /* ===== STUDIO GALLERY TEASER — shared language with /gallery.html ===== */
+  .sg-teaser-link{
+    font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    padding:14px 26px; min-height:48px; display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--line); border-radius:999px; color:var(--bone);
+    transition:all .35s var(--ease); white-space:nowrap;
+  }
+  .sg-teaser-link:hover{border-color:var(--red); background:rgba(229,9,32,.1); transform:translateY(-2px);}
+  .sg-teaser-link svg{width:16px; height:16px; stroke:var(--red); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transition:transform .35s var(--ease);}
+  .sg-teaser-link:hover svg{transform:translateX(4px);}
+  .sg-strip{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(8px,1.2vw,14px); margin-top:clamp(28px,4vw,52px);}
+  @media (min-width:640px){ .sg-strip{grid-template-columns:repeat(4,minmax(0,1fr));} }
+  @media (min-width:1100px){ .sg-strip{grid-template-columns:repeat(6,minmax(0,1fr));} }
+  .sg-strip-item{
+    position:relative; overflow:hidden; border-radius:3px; background:var(--charcoal-2);
+    aspect-ratio:4/3; box-shadow:0 0 0 1px var(--line);
+    opacity:0; transform:translateY(18px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease), box-shadow .5s var(--ease);
+  }
+  .sg-strip-item.in{opacity:1; transform:translateY(0);}
+  .sg-strip-item:hover{box-shadow:0 0 0 1px rgba(229,9,32,.6), 0 20px 46px -20px rgba(0,0,0,.85);}
+  .sg-strip-item img{width:100%; height:100%; object-fit:cover; object-position:center; filter:grayscale(.9) contrast(1.05) brightness(.84); transition:transform 1s var(--ease), filter .5s var(--ease);}
+  .sg-strip-item:hover img{transform:scale(1.05); filter:grayscale(0) brightness(1);}
+  .sg-strip-item::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(5,5,5,.5)); opacity:0; transition:opacity .4s var(--ease); pointer-events:none;}
+  .sg-strip-item:hover::after{opacity:1;}
+  .sg-strip-item span{position:absolute; right:10px; bottom:10px; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--bone-dim); opacity:0; transform:translateY(4px); transition:all .4s var(--ease); pointer-events:none;}
+  .sg-strip-item:hover span{opacity:1; transform:translateY(0);}
+  .sg-strip-skel{background:var(--charcoal-2); border-radius:3px; aspect-ratio:4/3; box-shadow:0 0 0 1px var(--line); overflow:hidden;}
+  .sg-strip-skel::after{content:''; display:block; width:100%; height:100%; background:linear-gradient(100deg,transparent 20%,rgba(245,242,236,.05) 42%,transparent 64%); background-size:220% 100%; animation:sgStripShimmer 1.5s var(--ease) infinite;}
+  @keyframes sgStripShimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
 </style>
 </head>
 <body>
@@ -1234,12 +1265,12 @@ box-shadow: 0 0 0 3px rgba(229,9,32,0.5), 0 6px 20px rgba(0,0,0,0.35);
     <div class="nav-links">
       <a href="#hero">Home</a>
       <a href="#programs">Programs</a>
-      <a href="#experience">Trainers</a>
-      <a href="#membership">Membership</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-<a href="franchise/gallery.html" class="nav-franchise">Franchise</a>
+  <a href="#experience">Trainers</a>
+  <a href="#membership">Membership</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="franchise/gallery.html" class="nav-franchise">Franchise</a>
     <a href="#membership" class="nav-cta">Join Yuva</a>
     <div class="nav-burger" id="burger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></div>
   </nav>
@@ -1249,8 +1280,9 @@ box-shadow: 0 0 0 3px rgba(229,9,32,0.5), 0 6px 20px rgba(0,0,0,0.35);
   <a href="#hero">Home</a>
   <a href="#programs">Programs</a>
   <a href="#experience">Trainers</a>
-  <a href="#membership">Membership</a>
-  <a href="#about">About</a>
+      <a href="#membership">Membership</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#about">About</a>
   <a href="#contact">Contact</a>
   <a href="franchise/gallery.html" class="nav-franchise">Franchise</a>
   <a href="#membership" class="nav-cta">Join Yuva</a>
@@ -1273,7 +1305,9 @@ box-shadow: 0 0 0 3px rgba(229,9,32,0.5), 0 6px 20px rgba(0,0,0,0.35);
         <p class="hero-sub">Premium training. Expert guidance. A stronger version of you.</p>
         <div class="hero-actions">
           <a href="#membership" class="btn-primary">Start Your Journey →</a>
-          <a href="#experience" class="btn-secondary">Explore The Studio</a>
+          <a href="gallery.html" class="btn-secondary">Explore The Studio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke:var(--red)"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1303,6 +1337,22 @@ box-shadow: 0 0 0 3px rgba(229,9,32,0.5), 0 6px 20px rgba(0,0,0,0.35);
   <div class="driftwall-container" id="driftwallContainer">
     <div class="driftwall-plane" id="driftwallPlane"></div>
   </div>
+</section>
+
+<!-- ===== STUDIO GALLERY TEASER ===== -->
+<section id="studio">
+  <div class="reveal">
+    <div class="section-tag">Inside Yuva</div>
+    <h2 class="section-title display">The Studio,<br>Unfiltered.</h2>
+  </div>
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:clamp(20px,4vw,48px); flex-wrap:wrap; margin-top:clamp(20px,3vw,32px);">
+    <p style="max-width:420px; color:var(--bone-dim); font-size:clamp(14px,1.6vw,16px); line-height:1.75;">Editorial frames from the floor — the environment, the atmosphere, the sessions and the people training in it.</p>
+    <a href="gallery.html" class="sg-teaser-link reveal">
+      View Full Gallery
+      <svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="sg-strip" id="studioStrip"></div>
 </section>
 
 <!-- ===== EXPERIENCE ===== -->
@@ -1545,6 +1595,66 @@ const io = new IntersectionObserver((entries)=>{
   });
 }, {threshold:0.15});
 revealEls.forEach(el=>io.observe(el));
+
+// ===== STUDIO GALLERY TEASER =====
+// Read-only preview of the same public collection shown on /gallery.html.
+// Fails silently: the section simply stays empty if the gallery is unavailable.
+(function () {
+  const strip = document.getElementById('studioStrip');
+  if (!strip) return;
+  const MAX = 6;
+
+  const fmtDate = (iso) => {
+    const d = new Date(iso);
+    return isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  };
+
+  for (let i = 0; i < MAX; i++) {
+    const s = document.createElement('div');
+    s.className = 'sg-strip-skel';
+    strip.appendChild(s);
+  }
+
+  fetch('/api/gallery', { headers:{ Accept:'application/json' } })
+    .then((res) => res.json())
+    .then((body) => {
+      const items = (body && body.items) || [];
+      strip.innerHTML = '';
+      if (!items.length) return;
+
+      items.slice(0, MAX).forEach((item, i) => {
+        const a = document.createElement('a');
+        a.className = 'sg-strip-item';
+        a.href = 'gallery.html';
+        a.setAttribute('aria-label', 'Open the Studio Gallery');
+
+        const img = document.createElement('img');
+        img.src = item.thumbnail_url || item.media_url;
+        img.alt = 'YUVA studio photograph';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        a.appendChild(img);
+
+        const cap = document.createElement('span');
+        cap.textContent = fmtDate(item.uploaded_at);
+        a.appendChild(cap);
+
+        strip.appendChild(a);
+      });
+
+      if ('IntersectionObserver' in window) {
+        const sio = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) { entry.target.classList.add('in'); sio.unobserve(entry.target); }
+          });
+        }, { rootMargin:'120px' });
+        strip.querySelectorAll('.sg-strip-item').forEach((el) => sio.observe(el));
+      } else {
+        strip.querySelectorAll('.sg-strip-item').forEach((el) => el.classList.add('in'));
+      }
+    })
+    .catch(() => { strip.innerHTML = ''; });
+})();
 
 // ABOUT TOPICS
 const aboutTabs = Array.from(document.querySelectorAll('[data-about-tab]'));

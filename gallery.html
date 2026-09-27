@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>STUDIO GALLERY | YUVA FIT &amp; PHYSIQUE</title>
+<meta name="description" content="Inside the YUVA studio — gym environment, training atmosphere, events and activities. Premium training space in Varadharajapuram, Tamil Nadu.">
+<link rel="canonical" href="/gallery.html">
+<meta property="og:title" content="Studio Gallery | YUVA Fit &amp; Physique">
+<meta property="og:description" content="Gym environment, training atmosphere, events and activities inside the YUVA studio.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#050505;
+    --charcoal:#0a0a0a;
+    --charcoal-2:#141414;
+    --bone:#f5f2ec;
+    --bone-dim:#a5a5a5;
+    --red:#e50920;
+    --line:rgba(245,242,236,0.1);
+    --ease:cubic-bezier(.16,.84,.24,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    min-height:100dvh;
+  }
+  .display{font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:0.01em; line-height:0.9;}
+  .script{font-family:'Instrument Serif',serif; font-style:italic;}
+  a{color:inherit; text-decoration:none;}
+  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--red); outline-offset:3px; border-radius:6px;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--red); color:var(--bone);}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+  /* ============================================================ NAV */
+  .nav-wrap{position:fixed; top:max(22px,env(safe-area-inset-top)); left:0; right:0; z-index:200; display:flex; justify-content:center; padding:0 20px; pointer-events:none;}
+  .nav{
+    pointer-events:auto; display:flex; align-items:center; gap:2px;
+    background:rgba(5,5,5,0.82); backdrop-filter:blur(22px) saturate(150%); -webkit-backdrop-filter:blur(22px) saturate(150%);
+    border:1px solid rgba(229,9,32,0.24); border-radius:999px; padding:8px 8px 8px 22px;
+    box-shadow:0 14px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(229,9,32,0.08);
+    width:max-content; max-width:calc(100vw - 40px);
+  }
+  .nav-logo{font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.08em; margin-right:26px; white-space:nowrap;}
+  .nav-logo span{color:var(--red);}
+  .nav-links{display:flex; gap:6px;}
+  .nav-links a{font-size:13px; padding:9px 15px; border-radius:999px; transition:all .25s var(--ease); white-space:nowrap; letter-spacing:0.02em; color:var(--bone-dim);}
+  .nav-links a:hover{background:rgba(229,9,32,0.18); color:var(--bone);}
+  .nav-links a[aria-current="page"]{background:rgba(229,9,32,0.2); color:var(--bone);}
+  .nav-cta{font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px; background:var(--red); color:var(--bone); white-space:nowrap; box-shadow:0 0 22px rgba(229,9,32,0.22); transition:all .25s var(--ease);}
+  .nav-cta:hover{transform:scale(1.04); box-shadow:0 0 34px rgba(229,9,32,0.5);}
+  .nav-admin{font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:9px 15px; border-radius:999px; border:1px solid var(--line); color:var(--bone-dim); white-space:nowrap; cursor:pointer; background:transparent; font-family:'Inter',sans-serif; transition:all .25s var(--ease);}
+  .nav-admin:hover{color:var(--bone); border-color:rgba(229,9,32,0.55);}
+  .nav-admin[hidden]{display:none;}
+  .nav-burger{display:none; padding:10px 14px; cursor:pointer; border:none; background:transparent;}
+  .nav-burger span{display:block; width:20px; height:2px; background:var(--bone); margin:4px 0;}
+
+  .mobile-menu{
+    position:fixed; inset:0; background:rgba(5,5,5,0.98); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    z-index:199; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;
+    padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .35s var(--ease), visibility 0s linear .35s;
+  }
+  .mobile-menu.open{opacity:1; visibility:visible; pointer-events:auto; transition:opacity .35s var(--ease), visibility 0s;}
+  .mobile-menu a{font-family:'Anton',sans-serif; font-size:26px; letter-spacing:0.04em; color:var(--bone-dim);}
+  .mobile-menu a[aria-current="page"]{color:var(--bone);}
+  .mobile-menu .nav-cta{font-family:'Inter',sans-serif; font-size:13px; margin-top:8px; color:var(--bone);}
+
+  /* ============================================================ HERO */
+  .sg-hero{position:relative; padding:clamp(126px, 17vw, 200px) clamp(16px, 6vw, 80px) clamp(34px, 5vw, 64px); overflow:hidden; isolation:isolate;}
+  .sg-hero-bg{position:absolute; inset:0; z-index:-2; overflow:hidden;}
+  .sg-hero-bg img{width:100%; height:100%; object-fit:cover; object-position:center 30%; filter:grayscale(1) contrast(1.12) brightness(.5); transform:scale(1.06);}
+  .sg-hero-veil{position:absolute; inset:0; z-index:-1; background:
+    linear-gradient(180deg, rgba(5,5,5,.9) 0%, rgba(5,5,5,.72) 38%, rgba(5,5,5,.94) 100%),
+    radial-gradient(120% 78% at 88% 6%, rgba(229,9,32,0.2), transparent 62%);}
+  .sg-eyebrow{color:var(--red); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:12px;}
+  .sg-eyebrow::after{content:''; flex:1; height:1px; max-width:120px; background:linear-gradient(90deg, rgba(229,9,32,.6), transparent);}
+  .sg-title{font-size:clamp(44px, 10vw, 132px); line-height:.86; letter-spacing:-.015em; max-width:12ch;}
+  .sg-title .accent{color:var(--red);}
+  .sg-sub{max-width:460px; margin-top:24px; color:var(--bone-dim); font-size:15px; line-height:1.75;}
+  .sg-herostat{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-top:clamp(30px,5vw,54px); padding-top:22px; border-top:1px solid var(--line);}
+  .sg-herostat .k{font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:#6f6f6f; margin-bottom:6px;}
+  .sg-herostat .v{font-size:13px; font-weight:500; color:var(--bone);}
+
+  /* ============================================================ TOOLBAR */
+  .sg-toolbar{
+    position:sticky; top:0; z-index:120;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding:13px clamp(16px, 6vw, 80px);
+    background:rgba(5,5,5,.82); backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%);
+    border-bottom:1px solid var(--line);
+  }
+  .sg-filters{display:flex; gap:6px;}
+  .sg-chip{
+    font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    padding:9px 15px; min-height:36px; border-radius:999px; border:1px solid var(--line);
+    background:transparent; color:var(--bone-dim); cursor:pointer; transition:all .28s var(--ease);
+  }
+  .sg-chip:hover{color:var(--bone); border-color:rgba(229,9,32,0.5);}
+  .sg-chip.is-active{background:var(--bone); border-color:var(--bone); color:var(--black); font-weight:700;}
+  .sg-count{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:#6f6f6f; white-space:nowrap;}
+  .sg-count b{color:var(--bone); font-weight:600;}
+
+  /* ============================================================ GRID */
+  .sg-wrap{padding:clamp(20px, 3.5vw, 48px) clamp(12px, 4vw, 64px) clamp(70px, 9vw, 130px); max-width:1720px; margin:0 auto;}
+  .sg-grid{display:grid; gap:clamp(7px, 1vw, 16px); grid-template-columns:repeat(2, minmax(0,1fr)); grid-auto-flow:dense;}
+  @media (min-width:640px){ .sg-grid{grid-template-columns:repeat(3, minmax(0,1fr));} }
+  @media (min-width:1024px){ .sg-grid{grid-template-columns:repeat(4, minmax(0,1fr));} }
+  @media (min-width:1500px){ .sg-grid{grid-template-columns:repeat(5, minmax(0,1fr));} }
+
+  .sg-card{
+    position:relative; display:flex; flex-direction:column; min-width:0; overflow:hidden;
+    background:var(--charcoal); border-radius:3px; box-shadow:0 0 0 1px rgba(245,242,236,.06);
+    opacity:0; transform:translateY(22px) scale(.985);
+    transition:opacity .8s var(--ease), transform .8s var(--ease), box-shadow .5s var(--ease);
+  }
+  .sg-card.in{opacity:1; transform:translateY(0) scale(1);}
+  .sg-card:hover{box-shadow:0 0 0 1px rgba(229,9,32,0.55), 0 24px 60px -22px rgba(0,0,0,0.9); z-index:2;}
+  /* editorial: every 6th tile is a double-width feature */
+  .sg-card.is-feature{grid-column:span 2; grid-row:span 2;}
+  @media (max-width:639px){ .sg-card.is-feature{grid-column:span 2;} }
+
+  .sg-media{position:relative; flex:1 1 auto; min-height:0; aspect-ratio:4/3; overflow:hidden; background:var(--charcoal-2); display:block; width:100%; border:0; padding:0; cursor:zoom-in;}
+  .sg-card.is-feature .sg-media{aspect-ratio:auto;}
+  .sg-media img{width:100%; height:100%; object-fit:cover; object-position:center; filter:grayscale(.85) contrast(1.06) brightness(.86); transition:transform 1.1s var(--ease), filter .55s var(--ease);}
+  .sg-card.in .sg-media img{filter:grayscale(1) contrast(1.06) brightness(.8);}
+  .sg-card:hover .sg-media img{transform:scale(1.045); filter:grayscale(0) contrast(1.02) brightness(1);}
+  .sg-media::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 52%, rgba(5,5,5,.62)); opacity:0; transition:opacity .45s var(--ease); pointer-events:none;}
+  .sg-card:hover .sg-media::after{opacity:1;}
+
+  .sg-index{position:absolute; top:10px; left:10px; font-family:'Anton',sans-serif; font-size:11px; letter-spacing:.08em; color:var(--bone); background:rgba(5,5,5,.6); backdrop-filter:blur(6px); padding:3px 8px; border-radius:2px; opacity:0; transform:translateY(-4px); transition:all .4s var(--ease); pointer-events:none;}
+  .sg-card:hover .sg-index{opacity:1; transform:translateY(0);}
+
+  .sg-zoom{position:absolute; right:10px; bottom:10px; width:34px; height:34px; border-radius:50%; background:rgba(5,5,5,.62); backdrop-filter:blur(6px); border:1px solid rgba(245,242,236,.16); display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(.86); transition:all .4s var(--ease); pointer-events:none;}
+  .sg-zoom svg{width:15px; height:15px; stroke:var(--bone); fill:none; stroke-width:1.7;}
+  .sg-card:hover .sg-zoom{opacity:1; transform:scale(1);}
+
+  .sg-meta{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 13px; min-height:44px; flex-shrink:0;}
+  .sg-date{font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:#6f6f6f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:color .35s var(--ease);}
+  .sg-card:hover .sg-date{color:var(--bone-dim);}
+  .sg-del{
+    flex-shrink:0; width:30px; height:30px; min-width:30px; border-radius:50%;
+    background:transparent; border:1px solid var(--line); color:var(--bone-dim);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .28s var(--ease);
+  }
+  .sg-del:hover{border-color:var(--red); color:var(--red); background:rgba(229,9,32,0.14);}
+  .sg-del svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round;}
+  .sg-del[hidden]{display:none;}
+
+  /* skeleton + states */
+  .sg-skel{background:var(--charcoal); border-radius:3px; overflow:hidden; aspect-ratio:4/3; box-shadow:0 0 0 1px rgba(245,242,236,.05);}
+  .sg-skel::after{content:''; display:block; width:100%; height:100%; background:linear-gradient(100deg, transparent 20%, rgba(245,242,236,.05) 42%, transparent 64%); background-size:220% 100%; animation:sgShimmer 1.5s var(--ease) infinite;}
+  @keyframes sgShimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
+  .sg-state-box{text-align:center; padding:clamp(60px,14vw,150px) 20px; max-width:520px; margin:0 auto;}
+  .sg-state-box .rule{width:36px; height:1px; background:var(--red); margin:0 auto 22px;}
+  .sg-state-box h3{font-family:'Anton',sans-serif; font-size:clamp(21px,3.6vw,32px); text-transform:uppercase; color:var(--bone); margin-bottom:12px; letter-spacing:.01em;}
+  .sg-state-box p{font-size:13.5px; color:var(--bone-dim); line-height:1.75; margin:0 auto;}
+  .sg-state-box p + p{margin-top:10px;}
+  .sg-retry-btn{margin-top:24px; font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:12px 26px; min-height:44px; border-radius:999px; background:transparent; border:1px solid var(--line); color:var(--bone-dim); cursor:pointer; transition:all .28s var(--ease);}
+  .sg-retry-btn:hover{border-color:var(--red); color:var(--bone); background:rgba(229,9,32,0.1);}
+  .sg-state-box[hidden]{display:none;}
+
+  /* ============================================================ LIGHTBOX */
+  .sg-lightbox{position:fixed; inset:0; z-index:400; background:rgba(5,5,5,0.985); display:flex; align-items:center; justify-content:center; padding:clamp(16px,5vw,64px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .32s var(--ease), visibility 0s linear .32s;}
+  .sg-lightbox.open{opacity:1; visibility:visible; pointer-events:auto; transition:opacity .32s var(--ease), visibility 0s;}
+  .sg-lb-img{max-width:100%; max-height:100%; object-fit:contain; border-radius:2px; box-shadow:0 40px 120px rgba(0,0,0,.8); opacity:0; transform:scale(.985); transition:opacity .4s var(--ease), transform .5s var(--ease);}
+  .sg-lightbox.ready .sg-lb-img{opacity:1; transform:scale(1);}
+  .sg-lb-btn{
+    position:absolute; z-index:2; width:48px; height:48px; border-radius:50%;
+    background:rgba(20,20,20,.72); backdrop-filter:blur(10px); border:1px solid var(--line);
+    color:var(--bone); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .28s var(--ease);
+  }
+  .sg-lb-btn:hover{border-color:var(--red); color:var(--red); background:rgba(229,9,32,0.14);}
+  .sg-lb-btn svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .sg-lb-close{top:max(14px, env(safe-area-inset-top)); right:14px;}
+  .sg-lb-prev{left:14px; top:50%; transform:translateY(-50%);}
+  .sg-lb-prev:hover{transform:translateY(-50%) scale(1.06);}
+  .sg-lb-next{right:14px; top:50%; transform:translateY(-50%);}
+  .sg-lb-next:hover{transform:translateY(-50%) scale(1.06);}
+  .sg-lb-count{position:absolute; top:max(20px, env(safe-area-inset-top)); left:20px; font-family:'Anton',sans-serif; font-size:13px; letter-spacing:.14em; color:var(--bone-dim);}
+  .sg-lb-count b{color:var(--bone); font-weight:400;}
+  .sg-lb-cap{position:absolute; left:0; right:0; bottom:max(18px, env(safe-area-inset-bottom)); text-align:center; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:#6f6f6f; padding:0 60px;}
+  .sg-lb-btn[hidden]{display:none;}
+  @media (max-width:560px){
+    .sg-lb-btn{width:42px; height:42px;}
+    .sg-lb-prev{left:6px;} .sg-lb-next{right:6px;}
+    .sg-lb-count{font-size:11px; left:14px;}
+  }
+
+  /* ============================================================ OVERLAYS */
+  .sg-overlay{
+    position:fixed; inset:0; z-index:420; background:rgba(5,5,5,0.93); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    display:flex; align-items:center; justify-content:center; padding:clamp(12px, 4vw, 32px);
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .3s var(--ease), visibility 0s linear .3s;
+  }
+  .sg-overlay.open{opacity:1; visibility:visible; pointer-events:auto; transition:opacity .3s var(--ease), visibility 0s;}
+  .sg-panel{width:min(100%, 430px); background:var(--charcoal); border:1px solid var(--line); border-radius:4px; padding:clamp(22px,4vw,32px); box-shadow:0 40px 100px rgba(0,0,0,.8); position:relative;}
+  .sg-panel::before{content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--red), transparent 62%);}
+  .sg-panel h3{font-family:'Anton',sans-serif; font-size:clamp(19px,3.4vw,25px); text-transform:uppercase; margin-bottom:8px; letter-spacing:.01em;}
+  .sg-panel .sub{font-size:12.5px; color:var(--bone-dim); line-height:1.7; margin-bottom:20px;}
+  .sg-input{width:100%; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:3px; padding:14px; font-family:'Inter',sans-serif; font-size:15px; color:var(--bone); outline:none; transition:border-color .25s;}
+  .sg-input:focus{border-color:var(--red);}
+  @media (pointer:coarse){ .sg-input{font-size:16px;} }
+  .sg-btn{width:100%; margin-top:14px; padding:15px 18px; border:none; border-radius:3px; cursor:pointer; background:var(--red); color:var(--bone); font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; transition:all .25s var(--ease);}
+  .sg-btn:hover{background:#ff0a24; transform:translateY(-1px);}
+  .sg-btn:disabled{opacity:.5; cursor:not-allowed; transform:none;}
+  .sg-btn.ghost{background:transparent; border:1px solid var(--line); color:var(--bone-dim); margin-top:8px;}
+  .sg-btn.ghost:hover{border-color:var(--bone-dim); color:var(--bone); background:transparent; transform:none;}
+  .sg-err{font-size:12.5px; color:#ff6b7f; margin-top:12px; line-height:1.5; display:none;}
+  .sg-err.show{display:block;}
+  .sg-ok{font-size:12.5px; color:#4ade80; margin-top:12px; line-height:1.5; display:none;}
+  .sg-ok.show{display:block;}
+  .sg-x{position:absolute; top:12px; right:12px; width:38px; height:38px; border-radius:50%; background:transparent; border:1px solid var(--line); color:var(--bone-dim); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .25s var(--ease);}
+  .sg-x:hover{border-color:var(--red); color:var(--red);}
+  .sg-x svg{width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round;}
+
+  /* uploader */
+  .sg-upload-panel{width:min(100%, 580px);}
+  .sg-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px;}
+  @media (max-width:420px){ .sg-actions{grid-template-columns:1fr;} }
+  .sg-action{display:flex; align-items:center; justify-content:center; gap:9px; min-height:56px; padding:14px; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:3px; cursor:pointer; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--bone); transition:all .28s var(--ease); text-align:center;}
+  .sg-action:hover{border-color:var(--red); background:rgba(229,9,32,0.1);}
+  .sg-action svg{width:18px; height:18px; stroke:var(--red); fill:none; stroke-width:1.7; flex-shrink:0;}
+  .sg-queue{margin-top:20px; display:flex; flex-direction:column; gap:9px; max-height:min(40vh, 330px); overflow-y:auto;}
+  .sg-queue:empty{display:none;}
+  .sg-row{display:flex; align-items:center; gap:12px; padding:9px 11px; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:3px;}
+  .sg-thumb{width:44px; height:44px; flex-shrink:0; border-radius:2px; object-fit:cover; background:var(--charcoal-2);}
+  .sg-rowinfo{flex:1; min-width:0;}
+  .sg-rowtop{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:5px;}
+  .sg-name{font-size:11.5px; color:var(--bone); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+  .sg-state{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--bone-dim); white-space:nowrap; flex-shrink:0;}
+  .sg-state.working{color:#fbbf24;}
+  .sg-state.done{color:#4ade80;}
+  .sg-state.fail{color:#ff6b7f;}
+  .sg-bar{height:3px; border-radius:99px; background:rgba(255,255,255,.09); overflow:hidden;}
+  .sg-fill{height:100%; width:0; border-radius:99px; background:var(--red); transition:width .25s var(--ease);}
+  .sg-fill.done{background:#22c55e;}
+  .sg-fill.fail{background:#ef4444;}
+  .sg-sizes{font-size:9.5px; color:#6f6f6f; margin-top:5px; letter-spacing:.03em;}
+  .sg-retry{flex-shrink:0; width:30px; height:30px; border-radius:50%; background:transparent; border:1px solid var(--line); color:var(--bone-dim); display:flex; align-items:center; justify-content:center; cursor:pointer;}
+  .sg-retry:hover{border-color:var(--red); color:var(--red);}
+  .sg-retry[hidden]{display:none;}
+  .sg-retry svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round;}
+  .sg-privacy{font-size:10.5px; color:#6f6f6f; line-height:1.6; margin-top:16px; text-align:center;}
+
+  /* ============================================================ FOOTER */
+  .sg-foot{border-top:1px solid var(--line); padding:clamp(36px,6vw,64px) clamp(16px,6vw,80px); display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; font-size:11.5px; color:var(--bone-dim);}
+  .sg-foot .back{font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:12px 22px; min-height:44px; display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; transition:all .28s var(--ease);}
+  .sg-foot .back:hover{border-color:var(--red); color:var(--bone);}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .nav-admin{display:none;}
+    .mobile-menu .nav-admin{display:block;}
+    .nav{padding:6px 8px 6px 16px; width:100%; max-width:520px; justify-content:space-between;}
+    .nav-logo{margin-right:0; font-size:15px;}
+    .nav-cta{font-size:12px; padding:9px 15px;}
+    .nav-burger{display:block;}
+  }
+  @media (max-width:420px){
+    .sg-meta{padding:10px 11px;}
+    .sg-date{font-size:9px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+    .sg-card{opacity:1; transform:none;}
+    .sg-card .sg-media img{filter:grayscale(0);}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ NAV -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">YUVA<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html#hero">Home</a>
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#experience">Trainers</a>
+      <a href="index.html#membership">Membership</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button type="button" class="nav-admin" id="adminBtn" hidden>Admin</button>
+    <a href="index.html#membership" class="nav-cta">Join Yuva</a>
+    <button class="nav-burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </nav>
+</div>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html#hero">Home</a>
+  <a href="index.html#programs">Programs</a>
+  <a href="index.html#experience">Trainers</a>
+  <a href="index.html#membership">Membership</a>
+  <a href="gallery.html" aria-current="page">Studio Gallery</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="index.html#membership" class="nav-cta">Join Yuva</a>
+  <button type="button" class="nav-admin" id="adminBtnMobile" hidden>Admin Sign In</button>
+</nav>
+
+<!-- ============================================================ HERO -->
+<header class="sg-hero">
+  <div class="sg-hero-bg">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=2000&q=80" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+  </div>
+  <div class="sg-hero-veil"></div>
+
+  <div class="sg-eyebrow">Inside Yuva</div>
+  <h1 class="sg-title display">Studio <span class="accent">Gallery</span></h1>
+  <p class="sg-sub">Editorial frames from the floor — the environment, the atmosphere, the sessions and the people training in it.</p>
+
+  <div class="sg-herostat">
+    <div><div class="k">Location</div><div class="v">Varadharajapuram, Tamil Nadu</div></div>
+    <div><div class="k">Open Daily</div><div class="v">5:30 AM – 10:30 PM</div></div>
+    <div><div class="k">Collection</div><div class="v" id="heroCount">Loading…</div></div>
+  </div>
+</header>
+
+<!-- ============================================================ TOOLBAR -->
+<div class="sg-toolbar">
+  <div class="sg-filters" id="filters" role="group" aria-label="Filter gallery">
+    <button type="button" class="sg-chip is-active" data-filter="all">All</button>
+    <button type="button" class="sg-chip" data-filter="recent">Recent</button>
+  </div>
+  <div class="sg-count" id="count">Loading…</div>
+</div>
+
+<!-- ============================================================ GALLERY -->
+<main class="sg-wrap">
+  <div class="sg-grid" id="grid"></div>
+
+  <div class="sg-state-box" id="stateEmpty" hidden>
+    <div class="rule"></div>
+    <h3>The Gallery Is Growing</h3>
+    <p>No photographs have been published yet. New studio images appear here as soon as they are uploaded.</p>
+  </div>
+
+  <div class="sg-state-box" id="stateError" hidden>
+    <div class="rule"></div>
+    <h3>Gallery Unavailable</h3>
+    <p>The collection could not be loaded right now. This is usually temporary.</p>
+    <button type="button" class="sg-retry-btn" id="retryBtn">Try Again</button>
+  </div>
+</main>
+
+<!-- ============================================================ LIGHTBOX -->
+<div class="sg-lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="sg-lb-count"><b id="lbIndex">01</b> / <span id="lbTotal">01</span></div>
+  <button type="button" class="sg-lb-btn sg-lb-close" id="lbClose" aria-label="Close viewer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="sg-lb-btn sg-lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="sg-lb-btn sg-lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <img class="sg-lb-img" id="lbImg" src="" alt="">
+  <div class="sg-lb-cap" id="lbCap"></div>
+</div>
+
+<!-- ============================================================ AUTH -->
+<div class="sg-overlay" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="sg-panel">
+    <h3 id="authTitle">Admin Sign In</h3>
+    <p class="sub">Enter the gallery administrator password to publish or remove photographs.</p>
+    <form id="authForm" novalidate>
+      <label class="sr-only" for="authPass">Admin password</label>
+      <input class="sg-input" type="password" id="authPass" name="password" autocomplete="current-password" placeholder="Admin password" required>
+      <p class="sg-err" id="authErr"></p>
+      <button class="sg-btn" type="submit" id="authSubmit">Sign In</button>
+    </form>
+    <button type="button" class="sg-btn ghost" data-close="authOverlay">Cancel</button>
+  </div>
+</div>
+
+<!-- ============================================================ UPLOADER -->
+<div class="sg-overlay" id="uploadOverlay" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+  <div class="sg-panel sg-upload-panel">
+    <button type="button" class="sg-x" data-close="uploadOverlay" aria-label="Close uploader"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <h3 id="uploadTitle">Add Photos</h3>
+    <p class="sub">Publish one photograph or a whole set at once. Large camera photos are resized and compressed automatically before upload.</p>
+
+    <div class="sg-actions">
+      <button type="button" class="sg-action" id="btnCamera">
+        <svg viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 015.5 6h2L9 4h6l1.5 2h2A2.5 2.5 0 0121 8.5v9A2.5 2.5 0 0118.5 20h-13A2.5 2.5 0 013 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        Take Photo
+      </button>
+      <button type="button" class="sg-action" id="btnChoose">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l4.5-4.5 3 3 3.5-3.5L21 17"/><circle cx="9" cy="9.5" r="1.3"/></svg>
+        Choose Photos
+      </button>
+    </div>
+
+    <div class="sg-queue" id="queue"></div>
+    <p class="sg-ok" id="uploadOk"></p>
+    <p class="sg-err" id="uploadErr"></p>
+    <p class="sg-privacy">Photographs are stored securely and published to the Studio Gallery only.</p>
+  </div>
+</div>
+
+<input class="sr-only" type="file" id="cameraInput" accept="image/*" capture="environment">
+<input class="sr-only" type="file" id="fileInput" accept="image/*" multiple>
+
+<!-- ============================================================ CONFIRM DELETE -->
+<div class="sg-overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="sg-panel">
+    <h3 id="confirmTitle">Delete this photo?</h3>
+    <p class="sub" id="confirmMsg">This permanently removes the photograph from the Studio Gallery. This cannot be undone.</p>
+    <button type="button" class="sg-btn" id="confirmYes">Delete</button>
+    <button type="button" class="sg-btn ghost" data-close="confirmOverlay">Cancel</button>
+  </div>
+</div>
+
+<footer class="sg-foot">
+  <span>YUVA FIT &amp; PHYSIQUE — Varadharajapuram, Tamil Nadu</span>
+  <a href="index.html" class="back">← Back to Home</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var API = '/api/gallery';
+  var TOKEN_KEY = 'yuva_gallery_admin_token';
+  var MAX_DIM = 1600;
+  var THUMB_DIM = 640;
+  var FULL_QUALITY = 0.82;
+  var THUMB_QUALITY = 0.7;
+  var MAX_FILES = 20;
+  var FEATURE_EVERY = 6;
+
+  var state = { items: [], token: null, filter: 'all', loaded: false, failed: false };
+
+  var grid = document.getElementById('grid');
+  var countEl = document.getElementById('count');
+  var heroCount = document.getElementById('heroCount');
+  var filtersEl = document.getElementById('filters');
+  var stateEmpty = document.getElementById('stateEmpty');
+  var stateError = document.getElementById('stateError');
+  var adminBtn = document.getElementById('adminBtn');
+  var adminBtnMobile = document.getElementById('adminBtnMobile');
+
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lbIndex = document.getElementById('lbIndex');
+  var lbTotal = document.getElementById('lbTotal');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+
+  var authOverlay = document.getElementById('authOverlay');
+  var authForm = document.getElementById('authForm');
+  var authPass = document.getElementById('authPass');
+  var authErr = document.getElementById('authErr');
+  var authSubmit = document.getElementById('authSubmit');
+
+  var uploadOverlay = document.getElementById('uploadOverlay');
+  var uploadOk = document.getElementById('uploadOk');
+  var uploadErr = document.getElementById('uploadErr');
+  var queueEl = document.getElementById('queue');
+  var cameraInput = document.getElementById('cameraInput');
+  var fileInput = document.getElementById('fileInput');
+
+  var confirmOverlay = document.getElementById('confirmOverlay');
+  var confirmYes = document.getElementById('confirmYes');
+  var pendingDeleteId = null;
+
+  var lbList = [];
+  var lbPos = 0;
+  var lastFocused = null;
+
+  /* ----------------------------------------------------------- helpers */
+
+  function authHeaders() {
+    return state.token ? { Authorization: 'Bearer ' + state.token } : {};
+  }
+
+  function setMsg(el, text, ok) {
+    if (!text) { el.textContent = ''; el.classList.remove('show'); return; }
+    el.textContent = text;
+    el.classList.add('show');
+    el.classList.toggle('sg-ok', !!ok);
+    el.classList.toggle('sg-err', !ok);
+  }
+
+  function formatBytes(bytes) {
+    if (!bytes && bytes !== 0) return '';
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function formatDate(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function openOverlay(el) {
+    el.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOverlay(el) {
+    el.classList.remove('open');
+    if (!document.querySelector('.sg-overlay.open') && !lightbox.classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  /* ---------------------------------------------------------- rendering */
+
+  function visibleItems() {
+    if (state.filter === 'recent') return state.items.slice(0, 12);
+    return state.items;
+  }
+
+  var TRASH_ICON = '<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>';
+  var ZOOM_ICON = '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>';
+
+  function showSkeletons() {
+    grid.innerHTML = '';
+    for (var i = 0; i < 8; i++) {
+      var s = document.createElement('div');
+      s.className = 'sg-skel';
+      grid.appendChild(s);
+    }
+  }
+
+  function render() {
+    var list = visibleItems();
+    var total = state.items.length;
+
+    countEl.innerHTML = total
+      ? '<b>' + list.length + '</b> / ' + total + ' photo' + (total === 1 ? '' : 's')
+      : 'No photos yet';
+    heroCount.textContent = total ? total + ' published' : 'Opening soon';
+
+    // Always reset the grid so re-renders never stack duplicate cards or skeletons.
+    grid.innerHTML = '';
+
+    if (state.failed) {
+      stateEmpty.hidden = true;
+      stateError.hidden = false;
+      return;
+    }
+    stateError.hidden = true;
+
+    if (!list.length) {
+      stateEmpty.hidden = false;
+      emptyCopy();
+      return;
+    }
+    stateEmpty.hidden = true;
+
+    var frag = document.createDocumentFragment();
+    list.forEach(function (item, i) {
+      var card = document.createElement('article');
+      card.className = 'sg-card' + (total > FEATURE_EVERY - 1 && i > 0 && i % FEATURE_EVERY === FEATURE_EVERY - 1 ? ' is-feature' : '');
+
+      var media = document.createElement('button');
+      media.type = 'button';
+      media.className = 'sg-media';
+      media.setAttribute('aria-label', 'Open photo ' + (i + 1) + ' of ' + list.length);
+
+      var img = document.createElement('img');
+      img.src = item.thumbnail_url || item.media_url;
+      img.alt = 'YUVA studio photograph';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      media.appendChild(img);
+
+      var idx = document.createElement('span');
+      idx.className = 'sg-index';
+      idx.textContent = pad2(i + 1);
+      media.appendChild(idx);
+
+      var zoom = document.createElement('span');
+      zoom.className = 'sg-zoom';
+      zoom.innerHTML = ZOOM_ICON;
+      media.appendChild(zoom);
+
+      media.addEventListener('click', function () { openLightbox(list, i); });
+
+      var meta = document.createElement('div');
+      meta.className = 'sg-meta';
+
+      var date = document.createElement('span');
+      date.className = 'sg-date';
+      date.textContent = formatDate(item.uploaded_at);
+      meta.appendChild(date);
+
+      var del = document.createElement('button');
+      del.type = 'button';
+      del.className = 'sg-del';
+      del.innerHTML = TRASH_ICON;
+      del.setAttribute('aria-label', 'Delete this photo');
+      del.hidden = !state.token;
+      del.addEventListener('click', function (e) { e.stopPropagation(); askDelete(item); });
+      meta.appendChild(del);
+
+      card.appendChild(media);
+      card.appendChild(meta);
+      frag.appendChild(card);
+    });
+
+    grid.appendChild(frag);
+    observeCards();
+  }
+
+  function emptyCopy() {
+    if (state.items.length) {
+      stateEmpty.querySelector('h3').textContent = 'Nothing Recent';
+      stateEmpty.querySelector('p').textContent = 'Switch to the All filter to view the complete collection.';
+    } else {
+      stateEmpty.querySelector('h3').textContent = 'The Gallery Is Growing';
+      stateEmpty.querySelector('p').textContent = 'No photographs have been published yet. New studio images appear here as soon as they are uploaded.';
+    }
+  }
+
+  var io = null;
+  function observeCards() {
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(grid.children, function (c) { c.classList.add('in'); });
+      return;
+    }
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '140px' });
+    Array.prototype.forEach.call(grid.children, function (c) { io.observe(c); });
+  }
+
+  /* ----------------------------------------------------------- lightbox */
+
+  function paintLightbox() {
+    var item = lbList[lbPos];
+    if (!item) return;
+    lightbox.classList.remove('ready');
+    lbImg.src = item.media_url;
+    lbImg.alt = 'YUVA studio photograph';
+    if (lbImg.complete) requestAnimationFrame(function () { lightbox.classList.add('ready'); });
+    else lbImg.onload = function () { lightbox.classList.add('ready'); };
+    lbIndex.textContent = pad2(lbPos + 1);
+    lbTotal.textContent = pad2(lbList.length);
+    lbCap.textContent = formatDate(item.uploaded_at);
+  }
+
+  function openLightbox(list, i) {
+    lastFocused = document.activeElement;
+    lbList = list;
+    lbPos = i;
+    var many = lbList.length > 1;
+    lbPrev.hidden = !many;
+    lbNext.hidden = !many;
+    paintLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lbClose').focus();
+  }
+
+  function step(delta) {
+    if (lbList.length < 2) return;
+    lbPos = (lbPos + delta + lbList.length) % lbList.length;
+    paintLightbox();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open', 'ready');
+    lbImg.removeAttribute('src');
+    if (!document.querySelector('.sg-overlay.open')) document.body.style.overflow = '';
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', function () { step(-1); });
+  lbNext.addEventListener('click', function () { step(1); });
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+
+  // swipe on touch devices
+  var touchX = null;
+  lightbox.addEventListener('touchstart', function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 48) step(dx < 0 ? 1 : -1);
+    touchX = null;
+  }, { passive: true });
+
+  /* ------------------------------------------------------ image pipeline */
+
+  function optimize(file, maxDim, quality) {
+    return new Promise(function (resolve, reject) {
+      var bitmap;
+      var revoke = function () { if (bitmap && bitmap.close) bitmap.close(); };
+      var fail = function (msg) { revoke(); reject(new Error(msg)); };
+
+      if (window.createImageBitmap) {
+        createImageBitmap(file, { imageOrientation: 'from-image' })
+          .then(function (bmp) { bitmap = bmp; draw(); })
+          .catch(function () { drawWithImgElement(); });
+      } else {
+        drawWithImgElement();
+      }
+
+      function drawWithImgElement() {
+        var url = URL.createObjectURL(file);
+        var el = new Image();
+        el.onload = function () {
+          URL.revokeObjectURL(url);
+          bitmap = { width: el.naturalWidth, height: el.naturalHeight, _el: el };
+          draw();
+        };
+        el.onerror = function () { URL.revokeObjectURL(url); fail('This file could not be read as an image.'); };
+        el.src = url;
+      }
+
+      function draw() {
+        var sw = bitmap.width, sh = bitmap.height;
+        if (!sw || !sh) return fail('This file could not be read as an image.');
+
+        var scale = Math.min(1, maxDim / Math.max(sw, sh));
+        var w = Math.max(1, Math.round(sw * scale));
+        var h = Math.max(1, Math.round(sh * scale));
+
+        var canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        if (bitmap._el) ctx.drawImage(bitmap._el, 0, 0, w, h);
+        else ctx.drawImage(bitmap, 0, 0, w, h);
+
+        canvas.toBlob(function (blob) {
+          if (!blob) return fail('This image could not be optimized.');
+          blob._w = w; blob._h = h;
+          revoke();
+          resolve(blob);
+        }, 'image/jpeg', quality);
+      }
+    });
+  }
+
+  function blobToDataUrl(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(reader.result); };
+      reader.onerror = function () { reject(new Error('Could not read the optimized image.')); };
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  /* ------------------------------------------------------- upload queue */
+
+  function addRow(file) {
+    var row = document.createElement('div');
+    row.className = 'sg-row';
+
+    var thumb = document.createElement('img');
+    thumb.className = 'sg-thumb';
+    thumb.alt = '';
+    thumb.loading = 'lazy';
+    var previewUrl = URL.createObjectURL(file);
+    thumb.addEventListener('load', function () { URL.revokeObjectURL(previewUrl); }, { once: true });
+    thumb.src = previewUrl;
+
+    var info = document.createElement('div');
+    info.className = 'sg-rowinfo';
+
+    var top = document.createElement('div');
+    top.className = 'sg-rowtop';
+    var name = document.createElement('span');
+    name.className = 'sg-name';
+    name.textContent = file.name;
+    var status = document.createElement('span');
+    status.className = 'sg-state';
+    status.textContent = 'Preparing';
+    top.appendChild(name); top.appendChild(status);
+
+    var bar = document.createElement('div');
+    bar.className = 'sg-bar';
+    var fill = document.createElement('div');
+    fill.className = 'sg-fill';
+    bar.appendChild(fill);
+
+    var sizes = document.createElement('div');
+    sizes.className = 'sg-sizes';
+    sizes.textContent = formatBytes(file.size) + ' original';
+
+    info.appendChild(top); info.appendChild(bar); info.appendChild(sizes);
+
+    var retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'sg-retry';
+    retry.setAttribute('aria-label', 'Retry upload');
+    retry.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.3-5.6"/><path d="M20 4v4h-4"/></svg>';
+    retry.hidden = true;
+    retry.addEventListener('click', function () { process(row, file); });
+
+    row.appendChild(thumb); row.appendChild(info); row.appendChild(retry);
+    row._file = file; row._fill = fill; row._status = status;
+    row._sizes = sizes; row._retry = retry;
+    queueEl.insertBefore(row, queueEl.firstChild);
+    return row;
+  }
+
+  function setRow(row, pct, label, cls) {
+    row._fill.style.width = pct + '%';
+    row._fill.className = 'sg-fill' + (cls ? ' ' + cls : '');
+    row._status.textContent = label;
+    row._status.className = 'sg-state' + (cls === 'working' ? ' working' : cls ? ' ' + cls : '');
+  }
+
+  function process(row, file) {
+    setMsg(uploadErr, '');
+    setMsg(uploadOk, '');
+    row._retry.hidden = true;
+    setRow(row, 8, 'Preparing', 'working');
+
+    return optimize(file, MAX_DIM, FULL_QUALITY)
+      .then(function (fullBlob) {
+        setRow(row, 34, 'Compressing', 'working');
+        return optimize(file, THUMB_DIM, THUMB_QUALITY).then(function (thumbBlob) {
+          row._sizes.textContent =
+            'original ' + formatBytes(file.size) + ' → ' + formatBytes(fullBlob.size) + ' full · ' + formatBytes(thumbBlob.size) + ' thumb';
+          setRow(row, 58, 'Uploading', 'working');
+          return Promise.all([blobToDataUrl(fullBlob), blobToDataUrl(thumbBlob)]).then(function (urls) {
+            return uploadOne({ full: urls[0], thumb: urls[1], width: fullBlob._w, height: fullBlob._h }, row);
+          });
+        });
+      })
+      .catch(function (err) {
+        setRow(row, 100, 'Failed', 'fail');
+        row._retry.hidden = false;
+        setMsg(uploadErr, (err && err.message) || 'Upload failed. Please try again.');
+      });
+  }
+
+  function uploadOne(payload, row) {
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      var headers = authHeaders();
+      Object.keys(headers).forEach(function (k) { xhr.setRequestHeader(k, headers[k]); });
+
+      xhr.upload.onprogress = function (e) {
+        if (!e.lengthComputable) return;
+        setRow(row, Math.min(98, 58 + Math.round((e.loaded / e.total) * 40)), 'Uploading', 'working');
+      };
+
+      xhr.onload = function () {
+        var body = {};
+        try { body = JSON.parse(xhr.responseText); } catch (_) {}
+        if (xhr.status >= 200 && xhr.status < 300 && body.success) {
+          setRow(row, 100, 'Complete', 'done');
+          resolve(body);
+        } else {
+          if (xhr.status === 401) signOut();
+          reject(new Error(body.message || 'Upload failed (' + xhr.status + ').'));
+        }
+      };
+
+      xhr.onerror = function () { reject(new Error('Network error. Check your connection and retry.')); };
+      xhr.ontimeout = function () { reject(new Error('The upload timed out. Please retry.')); };
+      xhr.timeout = 120000;
+      xhr.send(JSON.stringify({ images: [payload] }));
+    });
+  }
+
+  function handleFiles(files) {
+    var list = Array.prototype.slice.call(files || []).slice(0, MAX_FILES);
+    if (!list.length) return;
+
+    setMsg(uploadErr, '');
+    setMsg(uploadOk, '');
+
+    var supported = list.filter(function (f) { return /^image\//.test(f.type); });
+    if (supported.length !== list.length) setMsg(uploadErr, 'Some files were skipped because they are not images.');
+    if (!supported.length) return;
+
+    var rows = supported.map(addRow);
+    var done = 0, failed = 0;
+
+    rows.forEach(function (row) {
+      process(row, row._file).then(
+        function () { done += 1; if (done + failed === rows.length) finishBatch(done, failed); },
+        function () { failed += 1; if (done + failed === rows.length) finishBatch(done, failed); }
+      );
+    });
+  }
+
+  function finishBatch(done, failed) {
+    if (done > 0) {
+      setMsg(uploadOk, done + ' photo' + (done === 1 ? '' : 's') + ' published to the Studio Gallery.');
+      loadGallery();
+    }
+    if (failed > 0) setMsg(uploadErr, failed + ' photo' + (failed === 1 ? '' : 's') + ' failed. Use the retry button to try again.');
+  }
+
+  /* ---------------------------------------------------------------- data */
+
+  function loadGallery() {
+    showSkeletons();
+    return fetch(API, { headers: { Accept: 'application/json' } })
+      .then(function (res) { return res.json().then(function (b) { return { ok: res.ok, body: b }; }); })
+      .then(function (r) {
+        state.items = (r.body && r.body.items) || [];
+        state.failed = false;
+        state.loaded = true;
+        render();
+      })
+      .catch(function () {
+        state.items = [];
+        state.failed = true;
+        state.loaded = true;
+        render();
+      });
+  }
+
+  /* ---------------------------------------------------------------- auth */
+
+  function signIn(token) {
+    state.token = token;
+    try { sessionStorage.setItem(TOKEN_KEY, token); } catch (_) {}
+    applyAuthUi();
+    render(); // reveal delete controls immediately
+  }
+
+  function signOut() {
+    state.token = null;
+    try { sessionStorage.removeItem(TOKEN_KEY); } catch (_) {}
+    applyAuthUi();
+    render();
+  }
+
+  function applyAuthUi() {
+    var on = !!state.token;
+    adminBtn.textContent = on ? 'Add Photos' : 'Admin';
+    adminBtnMobile.textContent = on ? 'Add Photos' : 'Admin Sign In';
+    adminBtn.hidden = false;
+    adminBtnMobile.hidden = false;
+  }
+
+  function requestUpload() {
+    if (!state.token) {
+      openOverlay(authOverlay);
+      authPass.value = '';
+      setMsg(authErr, '');
+      authPass.focus();
+      return;
+    }
+    queueEl.innerHTML = '';
+    setMsg(uploadErr, '');
+    setMsg(uploadOk, '');
+    openOverlay(uploadOverlay);
+  }
+
+  authForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    setMsg(authErr, '');
+    authSubmit.disabled = true;
+    authSubmit.textContent = 'Signing in…';
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'login', password: authPass.value })
+    })
+      .then(function (res) { return res.json().then(function (b) { return { ok: res.ok, body: b }; }); })
+      .then(function (r) {
+        if (r.ok && r.body.token) {
+          signIn(r.body.token);
+          closeOverlay(authOverlay);
+          queueEl.innerHTML = '';
+          setMsg(uploadOk, '');
+          setMsg(uploadErr, '');
+          openOverlay(uploadOverlay);
+        } else {
+          setMsg(authErr, (r.body && r.body.message) || 'Sign in failed.');
+        }
+      })
+      .catch(function () { setMsg(authErr, 'Network error. Please try again.'); })
+      .then(function () { authSubmit.disabled = false; authSubmit.textContent = 'Sign In'; });
+  });
+
+  /* -------------------------------------------------------------- delete */
+
+  function askDelete(item) {
+    pendingDeleteId = item.id;
+    openOverlay(confirmOverlay);
+  }
+
+  confirmYes.addEventListener('click', function () {
+    if (!pendingDeleteId) return;
+    var id = pendingDeleteId;
+    pendingDeleteId = null;
+    confirmYes.disabled = true;
+    confirmYes.textContent = 'Deleting…';
+
+    fetch(API + '?id=' + encodeURIComponent(id), { method: 'DELETE', headers: authHeaders() })
+      .then(function (res) { return res.json().then(function (b) { return { ok: res.ok, status: res.status, body: b }; }); })
+      .then(function (r) {
+        if (r.ok && r.body.success) {
+          state.items = state.items.filter(function (i) { return i.id !== id; });
+          render();
+        } else {
+          if (r.status === 401) signOut();
+          alert((r.body && r.body.message) || 'The photo could not be deleted.');
+        }
+      })
+      .catch(function () { alert('Network error. The photo could not be deleted.'); })
+      .then(function () { confirmYes.disabled = false; confirmYes.textContent = 'Delete'; closeOverlay(confirmOverlay); });
+  });
+
+  /* -------------------------------------------------------------- events */
+
+  adminBtn.addEventListener('click', requestUpload);
+  adminBtnMobile.addEventListener('click', function () {
+    mobileMenu.classList.remove('open');
+    requestUpload();
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', loadGallery);
+  document.getElementById('btnCamera').addEventListener('click', function () { cameraInput.click(); });
+  document.getElementById('btnChoose').addEventListener('click', function () { fileInput.click(); });
+
+  cameraInput.addEventListener('change', function () { handleFiles(cameraInput.files); cameraInput.value = ''; });
+  fileInput.addEventListener('change', function () { handleFiles(fileInput.files); fileInput.value = ''; });
+
+  filtersEl.addEventListener('click', function (e) {
+    var chip = e.target.closest('.sg-chip');
+    if (!chip) return;
+    state.filter = chip.getAttribute('data-filter');
+    Array.prototype.forEach.call(filtersEl.querySelectorAll('.sg-chip'), function (c) { c.classList.toggle('is-active', c === chip); });
+    render();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-close]'), function (btn) {
+    btn.addEventListener('click', function () { closeOverlay(document.getElementById(btn.getAttribute('data-close'))); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.sg-overlay'), function (ov) {
+    ov.addEventListener('click', function (e) { if (e.target === ov && ov.id !== 'confirmOverlay') closeOverlay(ov); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (lightbox.classList.contains('open')) { closeLightbox(); return; }
+      var open = document.querySelector('.sg-overlay.open');
+      if (open && open.id !== 'confirmOverlay') closeOverlay(open);
+      return;
+    }
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  });
+
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function () {
+    var open = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ----------------------------------------------------------------- init */
+
+  try { var saved = sessionStorage.getItem(TOKEN_KEY); if (saved) state.token = saved; } catch (_) {}
+  applyAuthUi();
+  showSkeletons();
+  loadGallery();
+})();
+</script>
+</body>
+</html>
