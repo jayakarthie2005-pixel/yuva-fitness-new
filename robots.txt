@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yuva-fitness-new.vercel.app/sitemap.xml
