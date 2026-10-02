@@ -812,7 +812,7 @@
     retry.setAttribute('aria-label', 'Retry upload');
     retry.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.3-5.6"/><path d="M20 4v4h-4"/></svg>';
     retry.hidden = true;
-    retry.addEventListener('click', function () { process(row, file); });
+    retry.addEventListener('click', function () { process(row, file).catch(function () {}); });
 
     row.appendChild(thumb); row.appendChild(info); row.appendChild(retry);
     row._file = file; row._fill = fill; row._status = status;
@@ -850,6 +850,7 @@
         setRow(row, 100, 'Failed', 'fail');
         row._retry.hidden = false;
         setMsg(uploadErr, (err && err.message) || 'Upload failed. Please try again.');
+        throw err; // propagate so handleFiles can count this file as failed
       });
   }
 
@@ -908,11 +909,22 @@
   }
 
   function finishBatch(done, failed) {
-    if (done > 0) {
-      setMsg(uploadOk, done + ' photo' + (done === 1 ? '' : 's') + ' published to the Studio Gallery.');
-      loadGallery();
+    var total = done + failed;
+    var okMsg = done + ' photo' + (done === 1 ? '' : 's') + ' published to the Studio Gallery.';
+
+    if (failed > 0) {
+      setMsg(uploadErr, failed + ' photo' + (failed === 1 ? '' : 's') + ' failed. Use the retry button to try again.');
     }
-    if (failed > 0) setMsg(uploadErr, failed + ' photo' + (failed === 1 ? '' : 's') + ' failed. Use the retry button to try again.');
+
+    if (done === 0) {
+      setMsg(uploadOk, 'No photos were published. ' + total + ' selected ' + (total === 1 ? 'file did' : 'files did') + ' not upload.');
+    } else if (failed > 0) {
+      setMsg(uploadOk, okMsg + ' ' + failed + ' of ' + total + ' failed.');
+    } else {
+      setMsg(uploadOk, okMsg);
+    }
+
+    if (done > 0) loadGallery();
   }
 
   /* ---------------------------------------------------------------- data */
