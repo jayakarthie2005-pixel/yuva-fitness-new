@@ -76,23 +76,19 @@
       .nav-cta{padding-left:14px; padding-right:14px;}
     }
     .mobile-menu {
-      position: fixed; inset: 0; background: rgba(5, 5, 5, 0.98); z-index: 199;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
-      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity .35s cubic-bezier(.16,.84,.24,1), visibility 0s linear .35s;
+      position: fixed; inset: 0; background: #050505; z-index: 199;
+      display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+      gap: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+      padding: calc(max(22px,env(safe-area-inset-top)) + 68px) 22px calc(30px + env(safe-area-inset-bottom));
+      opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-10px);
+      transition: opacity .26s cubic-bezier(.16,.84,.24,1), transform .26s cubic-bezier(.16,.84,.24,1), visibility 0s linear .26s;
     }
-    .mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .35s cubic-bezier(.16,.84,.24,1), visibility 0s; }
-    .mobile-menu a { font-family: 'Anton', sans-serif; font-size: 28px; letter-spacing: 0.04em; color: #F5F2EC; text-decoration: none; }
-    .mobile-menu .nav-cta { font-family: 'Inter', sans-serif; font-size: 13px; margin-top: 10px; }
-    @media (max-width: 768px) {
-      .nav-wrap { top: 12px; padding: 0 12px; }
-      .nav { width: 100%; max-width: 520px; justify-content: space-between; padding: 6px 8px 6px 16px; }
-      .nav-logo { margin-right: 0; font-size: 15px; }
-      .nav .nav-links, .nav .nav-cta, .nav .nav-franchise { display: none; }
-      .mobile-menu .nav-franchise { display: block; font-family: 'Anton', sans-serif; font-size: 28px; }
-      .nav-burger { display: block; width: 44px; height: 44px; padding: 10px 12px; }
+    .mobile-menu.open {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+      transition: opacity .26s cubic-bezier(.16,.84,.24,1), transform .26s cubic-bezier(.16,.84,.24,1), visibility 0s;
     }
+    .mobile-menu .nav-cta:hover { filter: brightness(1.12); }
+    .mobile-menu .nav-cta:active { transform: scale(.99); }
     .nav-wrap {
       transition: transform .4s cubic-bezier(.16,.84,.24,1), opacity .4s cubic-bezier(.16,.84,.24,1);
       will-change: transform, opacity;
@@ -102,6 +98,23 @@
       opacity: 0;
     }
     .nav-wrap.nav-hidden .nav { pointer-events: none; }
+    @media (max-width: 768px) {
+      .nav-wrap { top: 12px; padding: 0 12px; }
+      .nav { width: 100%; max-width: 520px; justify-content: space-between; padding: 6px 8px 6px 16px; }
+      .nav-logo { margin-right: 0; font-size: 15px; }
+      .nav .nav-links, .nav .nav-cta, .nav .nav-franchise { display: none; }
+      .mobile-menu .nav-franchise { display: block; font-family: 'Anton', sans-serif; font-size: 24px; }
+      .nav-burger { display: block; width: 44px; height: 44px; padding: 10px 12px; }
+      body:has(.mobile-menu.open) .nav {
+        background: rgba(5,5,5,0.94);
+        border-color: rgba(229,9,32,0.42);
+        box-shadow: 0 14px 44px rgba(0,0,0,0.65), inset 0 1px 0 rgba(229,9,32,0.12);
+      }
+      body:has(.mobile-menu.open) .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      body:has(.mobile-menu.open) .nav-burger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      body:has(.mobile-menu.open) .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+      .nav-wrap { transition: none; }
+    }
     @media (prefers-reduced-motion: reduce){
       .nav-wrap { transition: none; }
     }
@@ -316,6 +329,7 @@
   <a href="../index.html#programs">Programs</a>
   <a href="../index.html#experience">Trainers</a>
   <a href="../index.html#membership">Membership</a>
+  <a href="../gallery.html">Gallery</a>
   <a href="../index.html#about">About</a>
   <a href="../index.html#contact">Contact</a>
   <a href="gallery.html" class="nav-franchise" aria-current="page">Franchise</a>
