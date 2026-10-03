@@ -23,3 +23,28 @@ Thumbs.db
 *.swp
 .vercel
 .env*
+
+# Production rollback snapshots (local copies of previously deployed pages)
+# Real backups live OUTSIDE the project at
+# C:\Users\santh\AppData\Local\Temp\kilo\deploy-backup-2026-09-27
+*-yesterday.html
+vercel-*.html
+gallery-original.html
+index-original.html
+*-???????.html
+
+# Dev diff / comparison dumps
+*-diff.txt
+*-changes.txt
+*-comparison.txt
+
+# Stray 0-byte files from shell redirects
+/Active
+/Logged
+/vercel
+
+# Scratch test copies of real pages
+franchise/gallery_test.html
+franchise/*_new.html
+*_test.html
+*_new.html

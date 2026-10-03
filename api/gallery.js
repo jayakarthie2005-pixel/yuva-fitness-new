@@ -166,7 +166,9 @@ function verifyToken(req) {
 /* --------------------------------------------------------------- metadata */
 
 // Read-modify-write on the metadata blob is serialized in-process so two
-// concurrent uploads cannot clobber each other's records.
+// concurrent uploads cannot clobber each other's records. That chain only
+// orders writes within a single instance, so appendRecords() additionally
+// verifies each write against the stored blob.
 let writeChain = Promise.resolve();
 function serialize(task) {
   const run = writeChain.then(task, task);
@@ -200,6 +202,61 @@ function writeMetadata(items) {
     allowOverwrite: true,
     ...blobAuth(),
   });
+}
+
+// Bounded optimistic-concurrency settings for metadata appends.
+const APPEND_MAX_ATTEMPTS = 5;
+const APPEND_RETRY_BASE_MS = 40;
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const idsOf = (items) => items.map((item) => item.id);
+
+const hasAllIds = (items, ids) => {
+  const present = new Set(idsOf(items));
+  return ids.every((id) => present.has(id));
+};
+
+/**
+ * Append records to metadata.json without losing concurrent writers.
+ *
+ * serialize() only orders writes inside one serverless instance, so two
+ * concurrent uploads can both read the same starting array and each overwrite
+ * the other (last write wins). Here we merge onto whatever is currently stored
+ * and then confirm our own records survived; if a concurrent write clobbered
+ * them we re-read and re-apply. Only metadata is retried — the image blobs are
+ * already uploaded and are never re-written.
+ */
+async function appendRecords(records, initial = []) {
+  const ids = idsOf(records);
+
+  for (let attempt = 1; attempt <= APPEND_MAX_ATTEMPTS; attempt += 1) {
+    // Always re-read so we merge onto the latest stored state, not a stale one.
+    const current = attempt === 1 && initial.length ? initial : await readMetadata();
+
+    // Append semantics: keep every existing record, add only what is missing.
+    const present = new Set(idsOf(current));
+    for (const record of records) {
+      if (!present.has(record.id)) {
+        current.push(record);
+        present.add(record.id);
+      }
+    }
+
+    await writeMetadata(current);
+
+    const verified = await readMetadata();
+    if (hasAllIds(verified, ids)) return;
+
+    const saved = new Set(idsOf(verified));
+    const lost = ids.filter((id) => !saved.has(id));
+    console.error(
+      `metadata append: ${lost.length} record(s) lost to a concurrent write, retrying (attempt ${attempt}/${APPEND_MAX_ATTEMPTS})`
+    );
+    await sleep(APPEND_RETRY_BASE_MS * attempt);
+  }
+
+  throw new Error('Gallery metadata could not be updated. Please retry the upload.');
 }
 
 const publicView = (item) => ({
@@ -356,11 +413,11 @@ async function handleUpload(req, res) {
         full_path: fullPath,
         thumb_path: thumb ? thumbPath : null,
       };
-      existing.push(record);
       added.push(record);
     }
 
-    await writeMetadata(existing);
+    // Uploaded blobs already exist; only the metadata append is retried.
+    await appendRecords(added, existing);
     return added;
   });
 
